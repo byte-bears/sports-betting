@@ -11,6 +11,8 @@ The frontend and backend both make use of OCaml, Python for web scraping, and th
 ### Spring 2024
 
 Developers:
+
 - Selena Zheng (sz389)
 - Eric Zhou (ez255)
 - Anthony Song (abs343)
+- Timothy Li (tjl243)
