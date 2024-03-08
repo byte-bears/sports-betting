@@ -16,3 +16,4 @@ Developers:
 - Eric Zhou (ez255)
 - Anthony Song (abs343)
 - Timothy Li (tjl243)
+- Tanish Tyagi (tt556)
