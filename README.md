@@ -13,3 +13,4 @@ The frontend and backend both make use of OCaml, Python for web scraping, and th
 Developers:
 - Selena Zheng (sz389)
 - Eric Zhou (ez255)
+- Anthony Song (abs343)
