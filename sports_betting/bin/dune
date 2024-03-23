@@ -1,0 +1,4 @@
+(executable
+ (public_name sports_betting)
+ (name main)
+ (libraries sports_betting))
