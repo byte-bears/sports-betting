@@ -1,0 +1,7 @@
+(lang dune 3.14)
+(name sports_betting)
+(sections (lib .) (bin ../../bin) (doc ../../doc/sports_betting))
+(files
+ (lib (META dune-package opam))
+ (bin (sports_betting))
+ (doc (README.md)))
