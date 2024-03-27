@@ -24,7 +24,7 @@ let rec make_helper table (row : int) names = function
       match names with
       | [] -> ()
       | name :: t2 ->
-          let () = add table name (Column.make_string h (Column.empty row)) in
+          let () = add table name (Column.make h (Column.empty row)) in
           make_helper table row t2 t
     end
 
