@@ -2,7 +2,7 @@ exception Not_found
 exception Out_of_bounds
 
 type option =
-  | Some of float
+  | Some of string
   | None
 
 type t = {
@@ -32,12 +32,3 @@ let rec make lst col =
     | h :: t ->
         let () = add col (Some h) in
         make t col
-
-let rec make_string lst col =
-  if List.length lst <> size col then raise Out_of_bounds
-  else
-    match lst with
-    | [] -> col
-    | h :: t ->
-        let () = add col (Some (float_of_string h)) in
-        make_string t col

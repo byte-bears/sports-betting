@@ -1,6 +1,6 @@
 exception EmptyTable
 
-type 'a t = {
+type t = {
   mutable headers : string array;
   mutable dt : Column.t array;
   mutable size : int;
