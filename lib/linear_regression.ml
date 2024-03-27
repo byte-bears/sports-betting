@@ -1,5 +1,4 @@
-open Owl_base
-open Dt
+(*open Owl_base open Dt*)
 
 let data_names =
   [
@@ -37,6 +36,5 @@ let data_names =
     "VIDEO_AVAILABLE";
   ]
 
-let data =
-  Dt.make "../data/boxscores.csv" data_names
-    (Dt.empty (List.length data_names) 0)
+(*let data = Dt.make "data/boxscores.csv" data_names (Dt.empty (List.length
+  data_names) 0) *)
