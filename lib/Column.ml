@@ -1,9 +1,8 @@
-exception Not_found
 exception Out_of_bounds
 
 type t = {
   mutable data : string array;
-  mutable size : int;
+  mutable size : int; (* number of rows *)
 }
 
 let empty capacity = { data = Array.make capacity ""; size = 0 }

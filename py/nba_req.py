@@ -1,10 +1,8 @@
 import pandas as pd
 import requests
 
-
 def get_url(season, season_type):
     return f"https://stats.nba.com/stats/leaguegamelog?Counter=1000&DateFrom=&DateTo=&Direction=DESC&ISTRound=&LeagueID=00&PlayerOrTeam=P&Season={season}&SeasonType={season_type.replace(' ', '%20')}&Sorter=DATE"
-
 
 headers = {
     "Connection": "keep-alive",
@@ -18,6 +16,7 @@ headers = {
     "Accept-Encoding": "gzip, deflate, br",
     "Accept-Language": "en-US,en;q=0.9",
 }
+
 season_list = [
     # '1996-97',
     # '1997-98',
@@ -58,18 +57,18 @@ season_type_list = [
     "In-Season Tournament",
 ]
 
-
 for i, season in enumerate(season_list):
     response = requests.get(
         url=get_url(season, season_type_list[0]), headers=headers
     ).json()
     cols = response["resultSets"][0]["headers"]
     data = response["resultSets"][0]["rowSet"]
-    if not i:
+    if not i: # if i is 0
         df = pd.DataFrame(data, columns=cols)
     else:
         df = pd.concat(
             [df, pd.DataFrame(data, columns=cols)], ignore_index=True, sort=False
         )
     print(f"Season {season} done!")
+
 df.to_csv(r"data/boxscores.csv", index=False)
