@@ -1,5 +1,3 @@
-open Owl
-
 let rec populate_column_helper data curr_columns =
   match data with
   | [] -> List.rev curr_columns
