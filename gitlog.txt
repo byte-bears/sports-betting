@@ -1,0 +1,268 @@
+commit 73029f8a32a09b43d60dc267d81e8c0b155642d9
+Author: Timothy Li <tjl243@cornell.edu>
+Date:   Thu Mar 28 00:08:56 2024 -0400
+
+    added list functionality for moving averages
+    
+    - both tail recursive
+    - weighted moving average
+    - simple moving average
+
+commit 0d1469666542633ae16b8f9ae9b36d2af5f86eb2
+Merge: 7fb012b 63e4e4b
+Author: Tanish Tyagi <38384138+anaconda121@users.noreply.github.com>
+Date:   Wed Mar 27 23:37:33 2024 -0400
+
+    Merge pull request #9 from byte-bears/tanish
+    
+    merge csv input
+
+commit 947cd6414c46f73b748c8a2b8c11aa061040474a
+Author: tt556 <tt556@cornell.edu>
+Date:   Wed Mar 27 23:31:42 2024 -0400
+
+    Load csv processing
+
+    - Figured out how to load csv into different structures:
+    - string list list
+    - float list list
+
+commit bac58f662de0678c5eda70e4f007dea4e2b46d0d
+Author: Timothy Li <tjl243@cornell.edu>
+Date:   Wed Mar 27 02:02:38 2024 -0400
+
+    simple moving average, weighted moving average
+    
+    - generates list with moving averages
+    - normal averages also done, just returns float of whole list
+
+commit 79820e6ccbca76ae6667d2fe6550f532dbe3d652
+Author: Eric Zhou <ez255@cornell.edu>
+Date:   Wed Mar 27 00:56:28 2024 -0400
+
+    Created library installation instructions
+
+    - Created INSTALL.md file
+    - Did proper formatting
+
+commit c95d119a03079ca45f80e9c9b33cbec0481222be
+Author: Timothy Li <tjl243@cornell.edu>
+Date:   Wed Mar 27 00:54:56 2024 -0400
+
+    Simple moving average, linear regression
+    
+    Co-authored-by: Tanish Tyagi <anaconda121@users.noreply.github.com>
+
+    - Wrote simple moving average code (not finished)
+    - Started on code for linear regression
+
+commit 7fb012bc6eba75faff4948328644328404a6102e
+Merge: 3e201da e91c64a
+Author: Timothy Li <143044585+tjl243@users.noreply.github.com>
+Date:   Wed Mar 27 02:04:30 2024 -0400
+
+    Merge pull request #8 from byte-bears/tim
+    
+    simple moving average, weighted moving average
+
+commit e91c64a94a1febd988c3454f3d3d62ccf6bfbc37
+Author: Timothy Li <tjl243@cornell.edu>
+Date:   Wed Mar 27 02:02:38 2024 -0400
+
+    simple moving average, weighted moving average
+    
+    - generates list with moving averages
+    - normal averages also done, just returns float of whole list
+
+commit 3e201da0599a12b1bbfc4ab0973034baad5c355d
+Merge: 7b8e9df 7f722ef
+Author: Eric Zhou <31833003+eric-zzhou@users.noreply.github.com>
+Date:   Wed Mar 27 00:58:07 2024 -0400
+
+    Merge pull request #7 from byte-bears/eric
+    
+    Created library installation instructions
+
+commit 7f722efbeeed9d998235dd1e2af996b93ee3b8af
+Author: Eric Zhou <ez255@cornell.edu>
+Date:   Wed Mar 27 00:56:28 2024 -0400
+
+    Created library installation instructions
+
+    - Created INSTALL.md file
+    - Did proper formatting
+
+commit 7b8e9dfb7fd2af89be4f4e15c4da740d46adba79
+Merge: a52be6f eb5c10e
+Author: Timothy Li <143044585+tjl243@users.noreply.github.com>
+Date:   Wed Mar 27 00:55:59 2024 -0400
+
+    Merge pull request #6 from byte-bears/tim
+    
+    Simple moving average, linear regression
+
+commit eb5c10e7c6c0662ca705086bdfa749dacf13d184
+Author: Timothy Li <tjl243@cornell.edu>
+Date:   Wed Mar 27 00:54:56 2024 -0400
+
+    Simple moving average, linear regression
+    
+    Co-authored-by: Tanish Tyagi <anaconda121@users.noreply.github.com>
+
+commit a52be6f313f84bff4719bbeee680fe28736ea703
+Merge: f3209db 88114d7
+Author: Timothy Li <143044585+tjl243@users.noreply.github.com>
+Date:   Tue Mar 26 23:54:41 2024 -0400
+
+    Merge pull request #5 from byte-bears/tim
+    
+    slight changes to column/dt
+
+commit 4708e99d6021039b86cdf50b2605e14e488dd548
+Author: Tanish Tyagi <38384138+anaconda121@users.noreply.github.com>
+Date:   Tue Mar 26 23:53:34 2024 -0400
+
+    Create project_description.yaml
+
+    - Wrote yaml file in the proper format
+    - Included good description
+
+commit 0194878c8755095e1134d3ab4cbd112f8191b4c1
+Author: Anthony Song <anthony.b.song@gmail.com>
+Date:   Tue Mar 26 19:50:41 2024 -0400
+
+    Datatable (dt) and Column
+
+    - Finished but have not tested the functionality of datatable (dt) and columns
+    - Wrote a Make function that can make a column and/or make a dt given a file input (being tested)
+
+commit ee48cba9fab2f7f225b5b5dfbf3f9ecd58ee2a39
+Merge: 4362fc8 ecf14db
+Author: Eric Zhou <31833003+eric-zzhou@users.noreply.github.com>
+Date:   Mon Mar 25 21:23:33 2024 -0400
+
+    Merge pull request #4 from byte-bears/eric
+    
+    Eric branch new player boxscore data
+
+commit ecf14dbfb04dea610ea79a3fac3ccd9cf43c13c0
+Author: Eric Zhou <ez255@cornell.edu>
+Date:   Mon Mar 25 21:22:28 2024 -0400
+
+    Finished box score data gathering
+    
+    - Created python code to get data from official NBA website api
+    - Created boxscores csv that has past 3 years data from regular season
+
+commit 0aba33bc10ebb7ec971a450c3ea32dab6ea4bc5f
+Author: Eric Zhou <ez255@cornell.edu>
+Date:   Sun Mar 24 15:09:45 2024 -0400
+
+    Did game data extraction
+    
+    - Created python file to create game data csv from sqlite
+    - Made game_data.csv in data
+
+commit fd8286388e5d50b74e9490809f55a3aaa205fe5d
+Merge: a34c9ac 4362fc8
+Author: Eric Zhou <31833003+eric-zzhou@users.noreply.github.com>
+Date:   Sun Mar 24 14:49:28 2024 -0400
+
+    Merge pull request #3 from byte-bears/main
+    
+    Pull from main
+
+commit 4362fc834ee278e5a0daf5f52244f7858ee32c5e
+Author: tt556 <tt556@cornell.edu>
+Date:   Sun Mar 24 14:47:02 2024 -0400
+
+    remove _build
+
+commit 5285c0ef8921c0b82e1548b6e2b0daedcc484458
+Merge: a34c9ac b9bef36
+Author: bytebears <162665431+byte-bears@users.noreply.github.com>
+Date:   Sun Mar 24 14:36:54 2024 -0400
+
+    Merge pull request #1 from byte-bears/tanish
+    
+    Primitive EMA algorithm - implemented algorithm for predicting player…
+
+commit b9bef3676b5d9dad2fab85082b03ebd862993071
+Author: tt556 <tt556@cornell.edu>
+Date:   Sun Mar 24 14:32:39 2024 -0400
+
+    Primitive EMA algorithm
+    
+    - Implemented basic algorithm for predicting player over unders
+    - Need to work on connecting this with data
+
+commit a34c9ac73907e1c0980f53d856440f7af0f7ddc0
+Author: Eric Zhou <ez255@cornell.edu>
+Date:   Sun Mar 24 14:18:45 2024 -0400
+
+    Refactored repository
+    
+    - Moved everything to outside folder
+    - Removed _build from github
+
+commit a335d3fc90fb59454527ad16b1242df76c854623
+Author: Anthony Song <anthony.b.song@gmail.com>
+Date:   Sun Mar 24 14:13:06 2024 -0400
+
+    Started on data representation
+
+    - Started creating a datatable and columns for our project
+
+commit 97f7e9b25388eca8b552cce5b15ccec96220bf84
+Merge: 43dd6a3 3212f95
+Author: Anthony Song <anthony.b.song@gmail.com>
+Date:   Sat Mar 23 15:57:13 2024 -0400
+
+    Merge branch 'main' of github.com:byte-bears/sports-betting
+
+commit 43dd6a33fd92e02a9c2aada88b6776894356ade8
+Author: Anthony Song <anthony.b.song@gmail.com>
+Date:   Sat Mar 23 15:48:32 2024 -0400
+
+    Created folders and initialized repo
+
+    - Created a folder sports_betting for our project.
+    - Within sports_betting, added a data folder for when we create a webscraper to get data.
+    - Created the .gitignore file for our project.
+
+commit 3212f954f958798dfb5a8fc13f076aea98c4b85b
+Author: Tanish Tyagi <38384138+anaconda121@users.noreply.github.com>
+Date:   Fri Mar 8 00:32:05 2024 -0500
+
+    added tanish name
+
+commit a054b17679aa4f53dab3556bb2ad0a8d61ca4c4e
+Author: Timothy Li <tjl243@cornell.edu>
+Date:   Fri Mar 8 00:25:33 2024 -0500
+
+    Updated the wonderful readme
+
+commit 98500dd8332129a9b2daf229f50cacf1231b4395
+Author: Anthony Song <anthony.b.song@gmail.com>
+Date:   Fri Mar 8 00:23:25 2024 -0500
+
+    Edited readme so that it includes my name and netid.
+
+commit e5247a486b084c876b41952fb4aaecdd209562e9
+Author: Eric Zhou <ez255@cornell.edu>
+Date:   Fri Mar 8 00:20:41 2024 -0500
+
+    Redid README edit
+
+commit 9ed8d4367ff1b1c9d0af62f2c256e50916511c4b
+Author: sz389 <sz389@cornell.edu>
+Date:   Fri Mar 8 00:13:56 2024 -0500
+
+    Created README.md template
+    - added name and netid
+
+commit 40e298053ec6c933b326012bbe36e028f9bd85ff
+Author: bytebears <162665431+byte-bears@users.noreply.github.com>
+Date:   Thu Mar 7 23:53:40 2024 -0500
+
+    Initial commit
