@@ -1,4 +1,4 @@
-open Owl
+(* open Owl *)
 
 let rec populate_column_helper data curr_columns =
   match data with
@@ -23,5 +23,5 @@ let load_csv_float csv_file =
   in
   filtered_data
 
-let ndarray = load_data_string "data/test.csv"
+let ndarray = load_data_string "data/boxscores.csv"
 let test = load_csv_float "data/test.csv"
