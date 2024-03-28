@@ -24,8 +24,8 @@ let simple_moving_average data =
 let rec weighted_moving_average_aux data epsilon acc index =
   if index < Column.size data then
     weighted_moving_average_aux data epsilon
-      (((1. -. epsilon) *. List.hd acc)
-       +. (epsilon *. float_of_string (Column.get data index))
+      ((epsilon *. List.hd acc)
+       +. ((1. -. epsilon) *. float_of_string (Column.get data index))
       :: acc)
       (index + 1)
   else acc
@@ -34,6 +34,33 @@ let weighted_moving_average epsilon data =
   weighted_moving_average_aux data epsilon
     (float_of_string (Column.get data 0) :: [])
     1
+
+let rec simple_moving_average_list_aux data acc index =
+  match data with
+  | [] -> acc
+  | h :: t ->
+      simple_moving_average_list_aux t
+        ((h +. (float_of_int index *. List.hd acc))
+         /. (float_of_int index +. 1.)
+        :: acc)
+        (index + 1)
+
+let simple_moving_average_list data =
+  List.rev
+    (simple_moving_average_list_aux (List.tl data) (List.hd data :: []) 1)
+
+let rec weighted_moving_average_list_aux data epsilon acc index =
+  match data with
+  | [] -> acc
+  | h :: t ->
+      weighted_moving_average_list_aux t epsilon
+        ((((1. -. epsilon) *. h) +. (epsilon *. List.hd acc)) :: acc)
+        (index + 1)
+
+let weighted_moving_average_list epsilon data =
+  List.rev
+    (weighted_moving_average_list_aux (List.tl data) epsilon
+       (List.hd data :: []) 1)
 
 let data =
   Column.make
