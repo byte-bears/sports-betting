@@ -1,0 +1,37 @@
+---
+# Members of your group.
+group:
+  - name: Eric Zhou
+    netid: ez255
+  - name: Timothy Li
+    netid: tjl243
+  - name: Tanish Tyagi
+    netid: tt556
+  - name: Anthony Song
+    netid: abs343
+  - name: Selena Zheng
+    netid: sz389
+
+# Your PM.
+pm:
+  name: Brendan Royals
+  netid: bhr53
+
+publish: true
+
+title: "Argon: A sports betting bot"
+
+# OK if this is a Cornell Github link, but public gallery viewers won't be able to see it.
+git-repo: "https://github.com/byte-bears/sports-betting"
+
+# If you have no demo screencast, replace the url string with an empty string ""
+demo-video-url: ""
+
+# Write a short, attention-grabbing description of your project.
+desc: >
+  This will be a bot that is capable of placing various wagers on different 
+  sports such as basketball, football, soccer, etc. We will develop statistical 
+  analysis techniques that involve scraping data from online sources to 
+  determine whether or not a player will score above or below a certain line. 
+  Our main types of bets will be player lines as opposed to determining whether 
+  or not a certain team will win or lose a game.
