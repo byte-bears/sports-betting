@@ -1,80 +1,37 @@
 open Owl
 
-let array_to_matrix data = Mat.of_arrays data
+let theta x y =
+  (* Convert input data to matrix and vector *)
+  let x_mat = Mat.transpose (Mat.of_arrays x) in
+  let y_vec = Mat.transpose (Mat.of_array y 1 (Array.length y)) in
 
-let manual_hstack x ones =
-  let m = Mat.row_num x in
-  let n1 = Mat.col_num x in
-  let n2 = Mat.col_num ones in
-  let result = Mat.empty m (n1 + n2) in
-  for i = 0 to m - 1 do
-    for j = 0 to n1 - 1 do
-      Mat.set result i j (Mat.get x i j)
-    done;
-    for j = 0 to n2 - 1 do
-      Mat.set result i (j + n1) (Mat.get ones i j)
-    done
-  done;
-  result
+  (* Print the shapes of x_mat and y_vec *)
+  Printf.printf "Shape of x_mat: (%d, %d)\n"
+    (fst (Mat.shape x_mat))
+    (snd (Mat.shape x_mat));
+  Printf.printf "Shape of y_vec: (%d, %d)\n"
+    (fst (Mat.shape y_vec))
+    (snd (Mat.shape y_vec));
 
-let linear_regression x y =
-  let ones = Mat.ones (Mat.row_num x) 1 in
-  let x' = manual_hstack x ones in
-  let xt = Mat.transpose x' in
-  let xtx = Mat.dot xt x' in
-  let xty = Mat.dot xt y in
-  let beta = Mat.dot (Mat.inv xtx) xty in
-  beta
+  (* Matrix computations *)
+  let xt = Mat.transpose x_mat in
+  (* Print the shapes of all intermediate matrices *)
+  Printf.printf "Shape of xt: (%d, %d)\n"
+    (fst (Mat.shape xt))
+    (snd (Mat.shape xt));
+  let xtx = Mat.dot xt x_mat in
+  Printf.printf "Shape of xtx: (%d, %d)\n"
+    (fst (Mat.shape xtx))
+    (snd (Mat.shape xtx));
+  let xtx_inv = Mat.inv xtx in
+  Printf.printf "Shape of xtx_inv: (%d, %d)\n"
+    (fst (Mat.shape xtx_inv))
+    (snd (Mat.shape xtx_inv));
+  let xty = Mat.dot xt y_vec in
 
-let of_col_vec arr =
-  let n = Array.length arr in
-  (* Number of rows in the resulting column matrix *)
-  let m = Mat.empty n 1 in
-  (* Initialize an empty matrix with n rows and 1 column *)
-  Array.iteri (fun i x -> Mat.set m i 0 x) arr;
-  (* Fill the matrix with elements from the array *)
-  m
+  Printf.printf "Shape of xty: (%d, %d)\n"
+    (fst (Mat.shape xty))
+    (snd (Mat.shape xty));
 
-let features_arr =
-  [|
-    "PLAYER_ID";
-    "GAME_ID";
-    "GAME_DATE";
-    "WL";
-    "MIN";
-    "FGM";
-    "FGA";
-    "FG_PCT";
-    "FG3M";
-    "FG3A";
-    "FG3_PCT";
-    "FTM";
-    "FTA";
-    "FT_PCT";
-    "OREB";
-    "DREB";
-    "REB";
-    "AST";
-    "STL";
-    "BLK";
-    "TOV";
-    "PF";
-    "PLUS_MINUS";
-    "FANTASY_PTS";
-  |]
-
-let output = "PTS"
-
-(** USAGE *)
-let entire_data = Load.load_string_array "data/boxscores.csv"
-
-let x = Load.filter_cols entire_data features_arr |> Load.load_float_array
-let y = Load.get_col entire_data output |> Load.load_float_col
-
-(* Convert arrays directly to matrices *)
-(* let x_matrix = array_to_matrix x in let y_matrix = of_col_vec y in
-
-   (* Perform linear regression *) let beta = linear_regression x_matrix
-   y_matrix in
-
-   (* Output the coefficients *) Mat.print beta *)
+  (* Final matrix multiplication to compute regression coefficients *)
+  Mat.dot xtx_inv xty

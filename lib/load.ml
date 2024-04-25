@@ -1,3 +1,5 @@
+open OUnit2
+
 let load_string_array filepath : string array array =
   let csv_data = Csv.transpose (Csv.load filepath) in
   let arrays = List.map Array.of_list csv_data in
@@ -46,3 +48,31 @@ let get_col data col_name =
   match !idx with
   | None -> [||]
   | Some i -> data.(i)
+
+let binarize_col f column = Array.map f column
+
+let add_col a b =
+  let _ = assert_equal (Array.length a.(0) = Array.length b) true in
+  let new_size = Array.length a + 1 in
+  let result = Array.make new_size [||] in
+  Array.blit a 0 result 0 (Array.length a);
+  Array.set result (new_size - 1) b;
+  result
+
+let is_rectangular arr =
+  if Array.length arr = 0 then true
+  else
+    let first_col_length = Array.length arr.(0) in
+    Array.for_all (fun col -> Array.length col = first_col_length) arr
+
+let max_length arr =
+  Array.fold_left (fun acc row -> max acc (Array.length row)) 0 arr
+
+let make_rectangular arr =
+  let max_len = max_length arr in
+  Array.map
+    (fun row ->
+      if Array.length row < max_len then
+        Array.append row (Array.make (max_len - Array.length row) 0.0)
+      else row)
+    arr
