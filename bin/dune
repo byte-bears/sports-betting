@@ -1,4 +1,4 @@
-(executable
- (public_name sports_betting)
- (name main)
- (libraries ounit2 sports_betting owl csv))
+(executables
+ (public_names sports_betting lin_reg)
+ (names main lin_reg)
+ (libraries sports_betting ounit2 owl csv))
