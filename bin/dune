@@ -1,4 +1,4 @@
 (executables
  (public_names sports_betting lin_reg svm)
- (names main lin_reg svm)
- (libraries ounit2 sports_betting owl csv))
+ (names main lin_reg svmx)
+ (libraries sports_betting ounit2 owl sklearn np csv))
