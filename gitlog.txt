@@ -10,7 +10,7 @@ Date:   Thu Mar 28 00:08:56 2024 -0400
 
 commit 0d1469666542633ae16b8f9ae9b36d2af5f86eb2
 Merge: 7fb012b 63e4e4b
-Author: Tanish Tyagi <38384138+anaconda121@users.noreply.github.com>
+Author: Tanish Tyagi <tt556@cornell.edu>
 Date:   Wed Mar 27 23:37:33 2024 -0400
 
     Merge pull request #9 from byte-bears/tanish
@@ -58,7 +58,7 @@ Date:   Wed Mar 27 00:54:56 2024 -0400
 
 commit 7fb012bc6eba75faff4948328644328404a6102e
 Merge: 3e201da e91c64a
-Author: Timothy Li <143044585+tjl243@users.noreply.github.com>
+Author: Timothy Li <tjl243@gmail.com>
 Date:   Wed Mar 27 02:04:30 2024 -0400
 
     Merge pull request #8 from byte-bears/tim
@@ -94,7 +94,7 @@ Date:   Wed Mar 27 00:56:28 2024 -0400
 
 commit 7b8e9dfb7fd2af89be4f4e15c4da740d46adba79
 Merge: a52be6f eb5c10e
-Author: Timothy Li <143044585+tjl243@users.noreply.github.com>
+Author: Timothy Li <tjl243@gmail.com>
 Date:   Wed Mar 27 00:55:59 2024 -0400
 
     Merge pull request #6 from byte-bears/tim
@@ -111,7 +111,7 @@ Date:   Wed Mar 27 00:54:56 2024 -0400
 
 commit a52be6f313f84bff4719bbeee680fe28736ea703
 Merge: f3209db 88114d7
-Author: Timothy Li <143044585+tjl243@users.noreply.github.com>
+Author: Timothy Li <tjl243@gmail.com>
 Date:   Tue Mar 26 23:54:41 2024 -0400
 
     Merge pull request #5 from byte-bears/tim
@@ -119,7 +119,7 @@ Date:   Tue Mar 26 23:54:41 2024 -0400
     slight changes to column/dt
 
 commit 4708e99d6021039b86cdf50b2605e14e488dd548
-Author: Tanish Tyagi <38384138+anaconda121@users.noreply.github.com>
+Author: Tanish Tyagi <tt556@cornell.edu>
 Date:   Tue Mar 26 23:53:34 2024 -0400
 
     Create project_description.yaml
@@ -128,7 +128,7 @@ Date:   Tue Mar 26 23:53:34 2024 -0400
     - Included good description
 
 commit 0194878c8755095e1134d3ab4cbd112f8191b4c1
-Author: Anthony Song <anthony.b.song@gmail.com>
+Author: Anthony Song <abs343@cornell.edu>
 Date:   Tue Mar 26 19:50:41 2024 -0400
 
     Datatable (dt) and Column
@@ -206,7 +206,7 @@ Date:   Sun Mar 24 14:18:45 2024 -0400
     - Removed _build from github
 
 commit a335d3fc90fb59454527ad16b1242df76c854623
-Author: Anthony Song <anthony.b.song@gmail.com>
+Author: Anthony Song <abs343@cornell.edu>
 Date:   Sun Mar 24 14:13:06 2024 -0400
 
     Started on data representation
@@ -215,13 +215,13 @@ Date:   Sun Mar 24 14:13:06 2024 -0400
 
 commit 97f7e9b25388eca8b552cce5b15ccec96220bf84
 Merge: 43dd6a3 3212f95
-Author: Anthony Song <anthony.b.song@gmail.com>
+Author: Anthony Song <abs343@cornell.edu>
 Date:   Sat Mar 23 15:57:13 2024 -0400
 
     Merge branch 'main' of github.com:byte-bears/sports-betting
 
 commit 43dd6a33fd92e02a9c2aada88b6776894356ade8
-Author: Anthony Song <anthony.b.song@gmail.com>
+Author: Anthony Song <abs343@cornell.edu>
 Date:   Sat Mar 23 15:48:32 2024 -0400
 
     Created folders and initialized repo
@@ -231,7 +231,7 @@ Date:   Sat Mar 23 15:48:32 2024 -0400
     - Created the .gitignore file for our project.
 
 commit 3212f954f958798dfb5a8fc13f076aea98c4b85b
-Author: Tanish Tyagi <38384138+anaconda121@users.noreply.github.com>
+Author: Tanish Tyagi <tt556@cornell.edu>
 Date:   Fri Mar 8 00:32:05 2024 -0500
 
     added tanish name
@@ -243,7 +243,7 @@ Date:   Fri Mar 8 00:25:33 2024 -0500
     Updated the wonderful readme
 
 commit 98500dd8332129a9b2daf229f50cacf1231b4395
-Author: Anthony Song <anthony.b.song@gmail.com>
+Author: Anthony Song <abs343@cornell.edu>
 Date:   Fri Mar 8 00:23:25 2024 -0500
 
     Edited readme so that it includes my name and netid.
