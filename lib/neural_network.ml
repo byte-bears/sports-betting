@@ -18,7 +18,7 @@ type node = {
 
 type neural_network = {
   layers : layer list;
-  nodes : node array;
+  nodes : node list;
 }
 
 (** Utility functions for activation *)
@@ -48,3 +48,33 @@ let apply_activation_derivative x = function
   | ReLU -> relu_derivative x
   | Sigmoid -> sigmoid_derivative x
   | Tanh -> tanh_derivative x
+
+(** Initialization of weights and biases *)
+
+let initialize_weights input_dim output_dim =
+  let scale = sqrt (2. /. float_of_int input_dim) in
+  Mat.gaussian ~mu:0. ~sigma:scale input_dim output_dim
+
+let initialize_biases output_dim = Mat.zeros 1 output_dim
+
+(** Creating a new neural network *)
+
+let create_node input_dim output_dim activation =
+  {
+    weights = initialize_weights input_dim output_dim;
+    biases = initialize_biases output_dim;
+    activation;
+  }
+
+(** Creating a new neural network *)
+
+let create (layers : layer list) input_dim =
+  let rec build_nodes (layers : layer list) input_dim acc_nodes =
+    match layers with
+    | [] -> List.rev acc_nodes
+    | Dense (num_nodes, activation) :: rest ->
+        let node = create_node input_dim num_nodes activation in
+        build_nodes rest num_nodes (node :: acc_nodes)
+  in
+  let nodes_lst = build_nodes layers input_dim [] in
+  { layers; nodes = nodes_lst }
