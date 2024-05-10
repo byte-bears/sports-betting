@@ -3,7 +3,9 @@
 - General Setup
   - `opam update`
   - `opam upgrade`
+- Batteries library
+    - `opam install batteries`
 - Owl library
     - `opam install owl`
-- Sklearn library
-    - `opam instal sklearn`
+- Torch library
+    - `opam install torch`
