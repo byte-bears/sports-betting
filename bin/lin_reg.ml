@@ -1,5 +1,6 @@
 open Sports_betting
 open OUnit2
+open Torch
 
 let features_arr =
   [|
@@ -39,4 +40,4 @@ let _ = assert_equal true (Load.is_rectangular x_rect)
 let _ = assert_equal true (Load.is_rectangular x_ones)
 let y = Load.get_col entire_data output |> Load.load_float_col
 let params = Linear_regression.theta x_ones y
-let () = Owl.Mat.print params
+let () = Tensor.print params
