@@ -1,4 +1,5 @@
 open OUnit2
+open Batteries
 
 let load_string_array filepath : string array array =
   let csv_data = Csv.transpose (Csv.load filepath) in
@@ -39,6 +40,39 @@ let filter_cols data features_arr =
 
   filtered_data
 
+let rec add_if_true acc bools col ind =
+  if ind = Array.length bools then acc
+  else
+    match bools.(ind) with
+    | true -> add_if_true (col.(ind) :: acc) bools col (ind + 1)
+    | false -> add_if_true acc bools col (ind + 1)
+
+let get_val_inds col target =
+  let f x = x = target in
+  let arr = Array.map f col in
+  arr.(0) <- true;
+  let indices = Array.mapi (fun i _ -> i) arr in
+  Array.of_list (List.rev (add_if_true [] arr indices 0))
+
+let filter_by_ind col inds = Array.map (fun i -> col.(i)) inds
+
+let filter_by_col (data : string array array) col_name target =
+  (* Finding correct column *)
+  let idx = ref None in
+  for i = 0 to Array.length data - 1 do
+    if data.(i).(0) = col_name then idx := Some i
+  done;
+
+  (* Start doing stuff *)
+  match !idx with
+  | None -> failwith "Column not found in data"
+  | Some i ->
+      let val_inds = get_val_inds data.(i) target in
+      for i = 0 to Array.length data - 1 do
+        data.(i) <- filter_by_ind data.(i) val_inds
+      done;
+      data
+
 let get_col data col_name =
   let idx = ref None in
   for i = 0 to Array.length data - 1 do
@@ -66,13 +100,25 @@ let is_rectangular arr =
     Array.for_all (fun col -> Array.length col = first_col_length) arr
 
 let max_length arr =
-  Array.fold_left (fun acc row -> max acc (Array.length row)) 0 arr
+  let m_len = ref 0 in
+  for i = 0 to Array.length arr - 1 do
+    m_len := max !m_len (Array.length arr.(i))
+  done;
+  !m_len
 
-let make_rectangular arr =
+let make_rectangular_rows arr =
   let max_len = max_length arr in
   Array.map
     (fun row ->
       if Array.length row < max_len then
-        Array.append row (Array.make (max_len - Array.length row) 0.0)
+        Array.append row (Array.make (max_len - Array.length row) (-1.0))
       else row)
     arr
+
+let make_rectangular_cols arr fill =
+  let max_len = max_length arr in
+  for i = 0 to Array.length arr - 1 do
+    let len = Array.length arr.(i) in
+    if len < max_len then
+      arr.(i) <- Array.append arr.(i) (Array.make (max_len - len) fill)
+  done
