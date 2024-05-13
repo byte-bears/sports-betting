@@ -2,11 +2,30 @@ let simple_average (data : Column.t) =
   Column.fold_left (fun (x : float) y : float -> float_of_string y +. x) 0. data
   /. float_of_int (Column.size data)
 
+let rec sum lst =
+  match lst with
+  | [] -> 0
+  | h :: t -> h + sum t
+
+let rec length lst =
+  match lst with
+  | [] -> 0
+  | _ :: t -> 1 + length t
+
+let simple_average_list lst = sum lst / length lst
+
 let weighted_average (data : Column.t) epsilon =
   Column.fold_left
     (fun x y -> ((1. -. epsilon) *. x) +. (epsilon *. float_of_string y))
     (float_of_string (Column.get data 0))
     (Column.sub data 1 (data.size - 1))
+
+let rec weighted_average_list lst epsilon =
+  match lst with
+  | [ h ] -> h
+  | h :: t ->
+      ((1. -. epsilon) *. h) +. (epsilon *. weighted_average_list t epsilon)
+  | [] -> 0.
 
 let rec simple_moving_average_aux data acc index =
   if index < Column.size data then
@@ -46,8 +65,10 @@ let rec simple_moving_average_list_aux data acc index =
         (index + 1)
 
 let simple_moving_average_list data =
-  List.rev
-    (simple_moving_average_list_aux (List.tl data) (List.hd data :: []) 1)
+  if data = [] then []
+  else
+    List.rev
+      (simple_moving_average_list_aux (List.tl data) (List.hd data :: []) 1)
 
 let rec weighted_moving_average_list_aux data epsilon acc index =
   match data with
@@ -58,9 +79,11 @@ let rec weighted_moving_average_list_aux data epsilon acc index =
         (index + 1)
 
 let weighted_moving_average_list epsilon data =
-  List.rev
-    (weighted_moving_average_list_aux (List.tl data) epsilon
-       (List.hd data :: []) 1)
+  if data = [] then []
+  else
+    List.rev
+      (weighted_moving_average_list_aux (List.tl data) epsilon
+         (List.hd data :: []) 1)
 
 let data =
   Column.make
