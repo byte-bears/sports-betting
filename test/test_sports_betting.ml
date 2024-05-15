@@ -158,7 +158,7 @@ let test_datatable =
        ]
 
 let list_simple_average_tests =
-  "simple moving average functions tests for lists"
+  "simple moving average functions tests for\n   lists"
   >::: [
          ( "empty list test" >:: fun _ ->
            assert_equal 0. (Ema.simple_average_list []) );
@@ -178,7 +178,7 @@ let list_simple_average_tests =
          ( "decreasing list 2" >:: fun _ ->
            assert_equal 3.5
              (Ema.simple_average_list (List.rev [ 2.; 3.; 4.; 5. ])) );
-         ( "constant list 2" >:: fun _ ->
+         ( "constant list\n   2" >:: fun _ ->
            assert_equal 2. (Ema.simple_average_list [ 2.; 2.; 2.; 2. ]) );
          ( "non-decreasing list 2" >:: fun _ ->
            assert_equal 3.5 (Ema.simple_average_list [ 3.; 3.; 4.; 4. ]) );
@@ -197,7 +197,7 @@ let list_sma_tests =
          ( "decreasing list 1" >:: fun _ ->
            assert_equal [ 4.; 3.5; 3.; 2.5 ]
              (Ema.simple_moving_average_list (List.rev [ 1.; 2.; 3.; 4. ])) );
-         ( "constant list 1" >:: fun _ ->
+         ( "constant\n   list 1" >:: fun _ ->
            assert_equal [ 1.; 1.; 1.; 1. ]
              (Ema.simple_moving_average_list [ 1.; 1.; 1.; 1. ]) );
          ( "increasing list 2" >:: fun _ ->
@@ -216,10 +216,10 @@ let list_wma_tests =
   >::: [
          ( "empty list for epsilon less than 0.5" >:: fun _ ->
            assert_equal [] (Ema.weighted_moving_average_list 0.4 []) );
-         ( "1 increasing list for epsilon less than 0.5" >:: fun _ ->
+         ( "1 increasing list for epsilon\n   less than 0.5" >:: fun _ ->
            assert_equal [ 1.; 1.6; 2.44; 3.376 ]
              (Ema.weighted_moving_average_list 0.4 [ 1.; 2.; 3.; 4. ]) );
-         ( "1 decreasing list for epsilon less than 0.5" >:: fun _ ->
+         ( "1 decreasing\n   list for epsilon less than 0.5" >:: fun _ ->
            assert_equal [ 4.; 3.4; 2.56; 1.624 ]
              (Ema.weighted_moving_average_list 0.4
                 (List.rev [ 1.; 2.; 3.; 4. ])) );
@@ -228,10 +228,10 @@ let list_wma_tests =
              (Ema.weighted_moving_average_list 0.4 [ 1.; 1.; 1.; 1. ]) );
          ( "1 empty list for epsilon greater than 0.5" >:: fun _ ->
            assert_equal [] (Ema.weighted_moving_average_list 0.6 []) );
-         ( "1 increasing list for epsilon greater than 0.5" >:: fun _ ->
+         ( "1 increasing list for epsilon\n   greater than 0.5" >:: fun _ ->
            assert_equal [ 1.; 1.4; 2.04; 2.824 ]
              (Ema.weighted_moving_average_list 0.6 [ 1.; 2.; 3.; 4. ]) );
-         ( "1 decreasing list for epsilon greater than 0.5" >:: fun _ ->
+         ( "1 decreasing\n   list for epsilon greater than 0.5" >:: fun _ ->
            assert_equal [ 4.; 3.6; 2.96; 2.176 ]
              (Ema.weighted_moving_average_list 0.6
                 (List.rev [ 1.; 2.; 3.; 4. ])) );
@@ -245,13 +245,13 @@ let list_wma_tests =
            assert_equal [ 8.; 6.8; 5.12; 3.248 ]
              (Ema.weighted_moving_average_list 0.4
                 (List.rev [ 2.; 4.; 6.; 8. ])) );
-         ( "2 constant list for epsilon greater than 0.5" >:: fun _ ->
+         ( "2 constant list for epsilon greater than\n   0.5" >:: fun _ ->
            assert_equal [ 2.; 2.; 2.; 2. ]
              (Ema.weighted_moving_average_list 0.4 [ 2.; 2.; 2.; 2. ]) );
-         ( "2 increasing list for epsilon greater than 0.5" >:: fun _ ->
+         ( "2 increasing\n   list for epsilon greater than 0.5" >:: fun _ ->
            assert_equal [ 2.; 2.8; 4.08; 5.648 ]
              (Ema.weighted_moving_average_list 0.6 [ 2.; 4.; 6.; 8. ]) );
-         ( "2 decreasing list for epsilon greater than 0.5" >:: fun _ ->
+         ( "2\n   decreasing list for epsilon greater than 0.5" >:: fun _ ->
            assert_equal [ 8.; 7.2; 5.92; 4.352 ]
              (Ema.weighted_moving_average_list 0.6
                 (List.rev [ 2.; 4.; 6.; 8. ])) );
