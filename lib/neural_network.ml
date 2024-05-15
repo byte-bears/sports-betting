@@ -11,8 +11,8 @@ type activation =
 type layer = Dense of int * activation
 
 type node = {
-  weights : Owl.Mat.mat;
-  biases : Owl.Mat.mat;
+  weights : Mat.mat;
+  biases : Mat.mat;
   activation : activation;
 }
 
@@ -78,3 +78,17 @@ let create (layers : layer list) input_dim =
   in
   let nodes_lst = build_nodes layers input_dim [] in
   { layers; nodes = nodes_lst }
+
+(** Forward pass *)
+
+let forward nn x =
+  let rec compute nodes input activations =
+    match nodes with
+    | [] -> List.rev activations
+    | { weights; biases; activation } :: rest_nodes ->
+        let z = float_of_int Mat.((input *@ weights) + biases) in
+        let a = apply_activation z activation in
+        compute rest_nodes a (a :: activations)
+  in
+  let activations = compute nn.nodes x [ x ] in
+  List.rev activations
