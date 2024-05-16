@@ -43,3 +43,17 @@ let extend col new_size : t =
     let extra_elements = Array.make extra_size "" in
     let new_data = Array.append col.data extra_elements in
     { data = new_data; size = col.size }
+
+let rec to_string_list lst =
+  match lst with
+  | [] -> ""
+  | h :: t -> h ^ " " ^ to_string_list t
+
+let to_string arr = to_string (Array.to_list arr.data)
+
+let string_of_array_with_spaces n arr =
+  let rec spaces n = if n <= 0 then "" else " " ^ spaces (n - 1) in
+  let space_str = spaces n in
+  Array.fold_left
+    (fun acc elem -> if acc = "" then elem else acc ^ space_str ^ elem)
+    "" arr
