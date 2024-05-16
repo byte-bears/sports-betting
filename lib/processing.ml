@@ -75,6 +75,18 @@ let add_matchup_stats data =
   let data = Load.add_col data home in
   data
 
+let get_player_data data player =
+  let data = Load.filter_by_col data "PLAYER_NAME" player in
+  let data = add_matchup_stats data in
+  data
+
+let get_player_stats data player stats =
+  let data = Load.filter_by_col data "PLAYER_NAME" player in
+  let features = Array.append [| "PLAYER_NAME" |] stats in
+  let data = add_matchup_stats data in
+  let data = Load.filter_cols data features in
+  data
+
 let get_player_stat data player stat =
   let features = [| "PLAYER_NAME"; stat |] in
   let data = Load.filter_cols data features in
@@ -100,3 +112,38 @@ let period_data data_f data player stat period =
   let data = Array.of_list (List.rev !data) in
   let labels = Array.of_list (List.rev !labels) in
   (data, labels)
+
+let interpolated_data data player stats period =
+  let cols = Array.append [| "PLAYER_NAME" |] stats in
+  let data = Load.filter_cols data cols in
+  let data = Load.filter_by_col data "PLAYER_NAME" player in
+  let out = ref [] in
+  let max_loop = (Array.length data / period) - 1 in
+  for i = 0 to max_loop do
+    let ind = ((i + 1) * period) - 1 in
+    let data_point = Array.sub data ind period in
+    out := data_point :: !out
+  done;
+  !out
+
+(* let vstack *)
+
+(* Normalize data *)
+
+let teams_list data =
+  let data = Load.filter_cols data [| "TEAM_ABBREVIATION"; "TEAM_NAME" |] in
+  let visited = ref [] in
+  let ret = ref [] in
+  for i = 1 to Array.length data.(0) - 1 do
+    let team = data.(1).(i) in
+    if not (List.mem team !visited) then (
+      visited := team :: !visited;
+      ret := Printf.sprintf "%s (%s)" data.(1).(i) data.(0).(i) :: !ret)
+  done;
+  !ret
+
+(* let teams_list data = let teams = Load.get_col data "TEAM_ABBREVIATION" in if
+   teams = [||] then failwith "Team column doesn't exist, cannot make new data";
+   let teams = Array.to_list teams in let teams = List.unique teams in match
+   teams with | [] -> failwith "Team column doesn't exist, cannot make new data"
+   | h :: t -> t *)

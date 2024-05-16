@@ -12,18 +12,18 @@ open Sports_betting
 let mat = Load.load_string_array "data/boxscores.csv"
 let () = Load.make_rectangular_cols mat ""
 
-(* let () = Utils.print_mat mat *)
-let mat = Processing.add_matchup_stats mat
+(* let () = Utils.print_mat mat let mat = Processing.add_matchup_stats mat
 
-(* let small = Load.filter_cols mat [| "PLAYER_NAME"; "GAME_DATE"; "MATCHUP";
+   (* let small = Load.filter_cols mat [| "PLAYER_NAME"; "GAME_DATE"; "MATCHUP";
    "OPP"; "HOME" |]
 
-   let () = Utils.print_mat small *)
-let mat1 = Processing.get_player_stat mat "Draymond Green" "PTS"
-let () = Utils.print_arr (Utils.float_to_string_arr mat1)
+   let () = Utils.print_mat small *) let mat1 = Processing.get_player_stat mat
+   "Draymond Green" "PTS" let () = Utils.print_arr (Utils.float_to_string_arr
+   mat1)
 
-let mat2 =
-  Processing.period_data Processing.get_player_stat mat "Draymond Green" "PTS" 3
+   let mat2 = Processing.period_data Processing.get_player_stat mat "Draymond
+   Green" "PTS" 3
 
-let () = Utils.print_mat_colwise (Utils.float_to_string_mat (fst mat2))
-let () = Utils.print_arr (Utils.float_to_string_arr (snd mat2))
+   let () = Utils.print_mat_colwise (Utils.float_to_string_mat (fst mat2)) let
+   () = Utils.print_arr (Utils.float_to_string_arr (snd mat2)) *)
+let () = Utils.print_list (Processing.teams_list mat) ~interp:"\n"
