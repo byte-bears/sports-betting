@@ -29,8 +29,8 @@ let rec make lst col =
       make t col
 
 let make_from_array array col =
-  let col = empty (Array.length array + 1) in
-  for i = 0 to Array.length array do
+  let col = empty (Array.length array) in
+  for i = 0 to Array.length array - 1 do
     col.data.(i) <- array.(i)
   done;
   col
@@ -77,11 +77,11 @@ let max_length_arr arr =
   in
   find_max 0 0
 
-let to_string n arr =
-  if Array.length arr.data > n then raise Out_of_bounds
-  else string_of_array_with_spaces n arr.data
-
 let max_length arr = max_length_arr arr.data
+
+let to_string n arr =
+  if max_length arr > n then raise Out_of_bounds
+  else string_of_array_with_spaces n arr.data
 
 let to_float_column col =
   let to_ret = Array.make (capacity col) 0. in

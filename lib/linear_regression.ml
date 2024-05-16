@@ -34,4 +34,4 @@ let theta x y =
   Tensor.matmul xtx_inv xty
 
 let theta_datatable datatable column =
-  theta (Datatable.to_float_array datatable) (Column.to_float_column column)
+  theta (to_float_array datatable) (to_float_column column)
