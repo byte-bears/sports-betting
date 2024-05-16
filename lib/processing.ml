@@ -82,8 +82,8 @@ let get_player_data data player =
 
 let get_player_stats data player stats =
   let data = Load.filter_by_col data "PLAYER_NAME" player in
-  let features = Array.append [| "PLAYER_NAME" |] stats in
   let data = add_matchup_stats data in
+  let features = Array.append [| "PLAYER_NAME" |] stats in
   let data = Load.filter_cols data features in
   data
 
@@ -101,9 +101,9 @@ let period_data data_f data player stat period =
   let full_data = data_f data player stat in
   let data = ref [] in
   let labels = ref [] in
-  let max_loop = (Array.length full_data / period) - 1 in
+  let max_loop = (Array.length full_data / (period + 1)) - 1 in
   for i = 0 to max_loop do
-    let ind = i * period in
+    let ind = i * (period + 1) in
     let data_point = Array.sub full_data ind period in
     let label = full_data.(ind + period) in
     data := data_point :: !data;
@@ -114,19 +114,34 @@ let period_data data_f data player stat period =
   (data, labels)
 
 let interpolated_data data player stats period =
-  let cols = Array.append [| "PLAYER_NAME" |] stats in
-  let data = Load.filter_cols data cols in
   let data = Load.filter_by_col data "PLAYER_NAME" player in
+  let data = add_matchup_stats data in
+  let data = Load.filter_cols data stats in
   let out = ref [] in
-  let max_loop = (Array.length data / period) - 1 in
+  let max_loop = (Array.length data.(0) / (period + 1)) - 1 in
   for i = 0 to max_loop do
-    let ind = ((i + 1) * period) - 1 in
-    let data_point = Array.sub data ind period in
-    out := data_point :: !out
+    let ind = (i + 1) * (period + 1) in
+    let data_point = ref [] in
+    for j = 0 to Array.length stats - 1 do
+      let stat = data.(j).(ind) in
+      data_point := stat :: !data_point
+    done;
+    out := Array.of_list (List.rev !data_point) :: !out
   done;
-  !out
+  Array.of_list (List.rev !out)
 
-(* let vstack *)
+let stack data1 data2 =
+  let size1 = Array.length data1 in
+  let size2 = Array.length data2 in
+  if size1 <> size2 then failwith "Data sizes do not match";
+  let ret = Array.make size1 [||] in
+  for i = 0 to size1 - 1 do
+    let row1 = data1.(i) in
+    let row2 = data2.(i) in
+    let row = Array.append row1 row2 in
+    ret.(i) <- row
+  done;
+  ret
 
 let teams_list data =
   let data = Load.filter_cols data [| "TEAM_ABBREVIATION"; "TEAM_NAME" |] in
@@ -151,3 +166,15 @@ let player_list data team =
   match players with
   | [] -> failwith "Team column doesn't exist, cannot make new data"
   | h :: t -> t
+
+let good_features data player stat period =
+  let past = period_data get_player_stat data player stat period in
+  let add = interpolated_data data player [| "OPP"; "HOME" |] period in
+  let ret = stack (Utils.float_to_string_mat (fst past)) add in
+  let labels = snd past in
+  let label_col = Column.empty (Array.length labels) in
+  for i = 0 to Array.length labels - 1 do
+    Column.add label_col (string_of_float labels.(i))
+  done;
+
+  (ret, label_col)

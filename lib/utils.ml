@@ -38,8 +38,10 @@ let print_length arr =
 
 let shape mat =
   let n_cols = Array.length mat in
-  let n_rows = Array.length mat.(0) in
-  (n_rows, n_cols)
+  if n_cols = 0 then (0, 0)
+  else
+    let n_rows = Array.length mat.(0) in
+    (n_rows, n_cols)
 
 let print_shape mat =
   let x, y = shape mat in
@@ -57,13 +59,17 @@ let float_to_string_mat mat =
   new_mat
 
 let print_mat mat =
-  for i = 0 to Array.length mat.(0) - 1 do
-    let () = Printf.printf "|" in
-    for j = 0 to Array.length mat - 1 do
-      Printf.printf " %s |" mat.(j).(i)
-    done;
-    Printf.printf "\n"
-  done
+  match shape mat with
+  | _, 0 -> Printf.printf "[]\n"
+  | 0, _ -> Printf.printf "[]\n"
+  | _, _ ->
+      for i = 0 to Array.length mat.(0) - 1 do
+        let () = Printf.printf "|" in
+        for j = 0 to Array.length mat - 1 do
+          Printf.printf " %s |" mat.(j).(i)
+        done;
+        Printf.printf "\n"
+      done
 
 let print_mat_colwise mat =
   for i = 0 to Array.length mat - 1 do
