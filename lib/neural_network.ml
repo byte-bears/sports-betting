@@ -78,9 +78,8 @@ let forward_node input node =
 
   if input_features <> weight_inputs then
     failwith
-      (Printf.sprintf
-         "Dimension mismatch: input features %d do not match weight inputs %d"
-         input_features weight_inputs)
+      (Printf.sprintf "input dim %d do not match weight dims %d" input_features
+         weight_inputs)
   else
     let z = Mat.(input *@ transpose node.weights) in
     apply_activation z node.activation
@@ -89,9 +88,9 @@ let forward network input =
   let rec propagate nodes input acc =
     match nodes with
     | [] -> List.rev acc
-    | node :: rest ->
-        let output = forward_node input node in
-        propagate rest output (output :: acc)
+    | h :: t ->
+        let output = forward_node input h in
+        propagate t output (output :: acc)
   in
   propagate network.layer_nodes input []
 
@@ -106,12 +105,8 @@ let backward_pass network input actual =
           match prev_outputs with
           | prev_output :: _ -> prev_output
           | [] ->
-              (* Return a zero matrix that matches the expected dimension *)
-              let num_samples =
-                Mat.row_num output
-                (* Assuming 'output' has correct number of rows for samples *)
+              let num_samples = Mat.row_num output
               and input_features = Mat.col_num node.weights in
-              (* Use the weight matrix to determine size *)
               Mat.zeros num_samples input_features
         in
         let error = Mat.(output - actual) in
