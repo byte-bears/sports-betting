@@ -2,41 +2,41 @@ open Batteries
 
 let team_encoding_east team =
   match team with
-  | "BOS" -> "0"
-  | "BKN" -> "1"
-  | "NYK" -> "2"
-  | "PHI" -> "3"
-  | "TOR" -> "4"
-  | "CHI" -> "5"
-  | "CLE" -> "6"
-  | "DET" -> "7"
-  | "IND" -> "8"
-  | "MIL" -> "9"
-  | "ATL" -> "10"
-  | "CHA" -> "11"
-  | "MIA" -> "12"
-  | "ORL" -> "13"
-  | "WAS" -> "14"
+  | "BOS" -> "0."
+  | "BKN" -> "1."
+  | "NYK" -> "2."
+  | "PHI" -> "3."
+  | "TOR" -> "4."
+  | "CHI" -> "5."
+  | "CLE" -> "6."
+  | "DET" -> "7."
+  | "IND" -> "8."
+  | "MIL" -> "9."
+  | "ATL" -> "10."
+  | "CHA" -> "11."
+  | "MIA" -> "12."
+  | "ORL" -> "13."
+  | "WAS" -> "14."
   | team -> failwith ("This team (" ^ team ^ ") does not exist")
 
 let team_encoding team =
   match team with
   | "OPP" -> "OPP"
-  | "DEN" -> "0"
-  | "MIN" -> "1"
-  | "OKC" -> "2"
-  | "POR" -> "3"
-  | "UTA" -> "4"
-  | "GSW" -> "5"
-  | "LAC" -> "6"
-  | "LAL" -> "7"
-  | "PHX" -> "8"
-  | "SAC" -> "9"
-  | "DAL" -> "10"
-  | "HOU" -> "11"
-  | "MEM" -> "12"
-  | "NOP" -> "13"
-  | "SAS" -> "14"
+  | "DEN" -> "0."
+  | "MIN" -> "1."
+  | "OKC" -> "2."
+  | "POR" -> "3."
+  | "UTA" -> "4."
+  | "GSW" -> "5."
+  | "LAC" -> "6."
+  | "LAL" -> "7."
+  | "PHX" -> "8."
+  | "SAC" -> "9."
+  | "DAL" -> "10."
+  | "HOU" -> "11."
+  | "MEM" -> "12."
+  | "NOP" -> "13."
+  | "SAS" -> "14."
   | team -> team_encoding_east team
 
 let matchup_helper size matchups teams opp home =
@@ -51,7 +51,7 @@ let matchup_helper size matchups teams opp home =
     let symb = Utils.strip_str symb in
     let team2 = Utils.strip_str team2 in
     if team1 = team then opp.(i) <- team2 else opp.(i) <- team1;
-    if symb = "@" then home.(i) <- "0" else home.(i) <- "1"
+    if symb = "@" then home.(i) <- "0." else home.(i) <- "1."
   done
 
 let add_matchup_stats data =
@@ -118,12 +118,12 @@ let interpolated_data data player stats period =
   let data = add_matchup_stats data in
   let data = Load.filter_cols data stats in
   let out = ref [] in
-  let max_loop = (Array.length data.(0) / (period + 1)) - 1 in
+  let max_loop = ((Array.length data.(0) - 1) / (period + 1)) - 1 in
   for i = 0 to max_loop do
-    let ind = (i + 1) * (period + 1) in
+    let ind = i * (period + 1) in
     let data_point = ref [] in
     for j = 0 to Array.length stats - 1 do
-      let stat = data.(j).(ind) in
+      let stat = data.(j).(ind + period) in
       data_point := stat :: !data_point
     done;
     out := Array.of_list (List.rev !data_point) :: !out
@@ -133,7 +133,8 @@ let interpolated_data data player stats period =
 let stack data1 data2 =
   let size1 = Array.length data1 in
   let size2 = Array.length data2 in
-  if size1 <> size2 then failwith "Data sizes do not match";
+  if size1 <> size2 then
+    failwith (Printf.sprintf "Data sizes do not match (%i) (%i)" size1 size2);
   let ret = Array.make size1 [||] in
   for i = 0 to size1 - 1 do
     let row1 = data1.(i) in
@@ -167,14 +168,21 @@ let player_list data team =
   | [] -> failwith "Team column doesn't exist, cannot make new data"
   | h :: t -> t
 
-let good_features data player stat period =
+let good_features data player ?(period = 3) stat =
   let past = period_data get_player_stat data player stat period in
   let add = interpolated_data data player [| "OPP"; "HOME" |] period in
   let ret = stack (Utils.float_to_string_mat (fst past)) add in
   let labels = snd past in
-  let label_col = Column.empty (Array.length labels) in
-  for i = 0 to Array.length labels - 1 do
-    Column.add label_col (string_of_float labels.(i))
+  let label_col =
+    Column.make_from_array
+      (Utils.float_to_string_arr labels)
+      (Column.empty (Array.length labels))
+  in
+  let cols = Array.make (period + 2) "" in
+  for i = 0 to period - 1 do
+    cols.(i) <- Printf.sprintf "%s_%d" stat (i + 1)
   done;
-
-  (ret, label_col)
+  cols.(period) <- "OPP";
+  cols.(period + 1) <- "HOME";
+  let data_mat = Datatable.make (Utils.transpose ret) cols in
+  (data_mat, label_col)

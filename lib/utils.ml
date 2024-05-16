@@ -21,7 +21,8 @@ let float_to_string_arr arr =
 
 let print_arr ?(interp = " ") arr =
   for i = 0 to Array.length arr - 1 do
-    Printf.printf "%s%s" arr.(i) interp
+    if i = Array.length arr - 1 then print_string arr.(i)
+    else Printf.printf "%s%s" arr.(i) interp
   done;
   print_newline ()
 
@@ -81,7 +82,7 @@ let print_mat_colwise mat =
   done
 
 let transpose mat =
-  let n_rows, n_cols = shape mat in
+  let n_cols, n_rows = shape mat in
   let new_mat = Array.make_matrix n_cols n_rows "" in
   for i = 0 to n_rows - 1 do
     for j = 0 to n_cols - 1 do

@@ -1,12 +1,3 @@
-(* open Torch
-
-   let load_csv_to_tensor file = let data = List.map (List.map float_of_string)
-   (Csv.load file) in let rows = List.map Array.of_list data in let tensor =
-   Tensor.of_float2 (Array.of_list rows) in tensor
-
-   let file_path = "/home/ez255/sports-betting/data/test.csv" let tensor =
-   load_csv_to_tensor file_path let () = Tensor.print tensor *)
-
 open Sports_betting
 
 let mat = Load.load_string_array "data/boxscores.csv"
@@ -39,3 +30,5 @@ let () = Utils.print_mat_colwise mat3
 let () = Utils.print_shape mat3
 let ultimate = Processing.stack (Utils.float_to_string_mat (fst mat2)) mat3
 let () = Utils.print_mat_colwise ultimate
+let good = Processing.good_features mat "Draymond Green" "PTS"
+let () = print_endline (Datatable.to_string (fst good))
