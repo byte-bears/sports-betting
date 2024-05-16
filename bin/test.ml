@@ -26,4 +26,4 @@ let () = Load.make_rectangular_cols mat ""
 
    let () = Utils.print_mat_colwise (Utils.float_to_string_mat (fst mat2)) let
    () = Utils.print_arr (Utils.float_to_string_arr (snd mat2)) *)
-let () = Utils.print_list (Processing.teams_list mat) ~interp:"\n"
+let () = Utils.print_list (Processing.player_list mat "ATL") ~interp:"\n"
