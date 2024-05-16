@@ -1,5 +1,4 @@
 (executables
- (public_names sports_betting lin_reg)
- (names main lin_reg)
- (libraries sports_betting ounit2 owl csv lablgtk3)
- (flags :standard -w -40))
+ (public_names sports_betting lin_reg test run_nn)
+ (names main lin_reg test run_nn)
+ (libraries sports_betting ounit2 owl csv torch))

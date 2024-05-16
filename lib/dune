@@ -1,6 +1,6 @@
 (library
  (inline_tests)
  (name sports_betting)
- (libraries csv owl ounit2)
+ (libraries csv ounit2 batteries torch owl)
  (preprocess
   (pps ppx_inline_test)))
