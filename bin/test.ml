@@ -14,6 +14,11 @@ let () = Load.make_rectangular_cols mat ""
 
 (* let () = Utils.print_mat mat *)
 let mat = Processing.add_matchup_stats mat
+
+(* let small = Load.filter_cols mat [| "PLAYER_NAME"; "GAME_DATE"; "MATCHUP";
+   "OPP"; "HOME" |]
+
+   let () = Utils.print_mat small *)
 let mat1 = Processing.get_player_stat mat "Draymond Green" "PTS"
 let () = Utils.print_arr (Utils.float_to_string_arr mat1)
 
