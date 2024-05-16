@@ -58,7 +58,6 @@ let to_float_array (table : t) =
   for i = 0 to Array.length table.dt - 1 do
     to_ret := Column.to_float_column table.dt.(i) :: !to_ret
   done;
-  (* Utils.print_mat_colwise (Utils.float_to_string_mat to_ret); *)
   Array.of_list (List.rev !to_ret)
 
 let make (matrix : string array array) (names : string array) =

@@ -102,7 +102,6 @@ let period_data data_f data player stat period =
   let data = ref [] in
   let labels = ref [] in
   let max_loop = (Array.length full_data / (period + 1)) - 1 in
-  Printf.printf "interp max_loop: %d\n" max_loop;
   for i = 0 to max_loop do
     let ind = i * (period + 1) in
     let data_point = Array.sub full_data ind period in
@@ -120,7 +119,6 @@ let interpolated_data data player stats period =
   let data = Load.filter_cols data stats in
   let out = ref [] in
   let max_loop = ((Array.length data.(0) - 1) / (period + 1)) - 1 in
-  Printf.printf "interp max_loop: %d\n" max_loop;
   for i = 0 to max_loop do
     let ind = i * (period + 1) in
     let data_point = ref [] in

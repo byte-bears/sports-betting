@@ -1,4 +1,4 @@
 (executables
  (public_names sports_betting lin_reg test run_nn)
  (names main lin_reg test run_nn)
- (libraries sports_betting ounit2 csv torch))
+ (libraries sports_betting ounit2 owl csv torch))
