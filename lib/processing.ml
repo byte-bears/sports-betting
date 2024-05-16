@@ -114,13 +114,14 @@ let period_data data_f data player stat period =
   (data, labels)
 
 let interpolated_data data player stats period =
+  let data = Array.copy data in
   let data = Load.filter_by_col data "PLAYER_NAME" player in
   let data = add_matchup_stats data in
   let data = Load.filter_cols data stats in
   let out = ref [] in
   let max_loop = ((Array.length data.(0) - 1) / (period + 1)) - 1 in
   for i = 0 to max_loop do
-    let ind = i * (period + 1) in
+    let ind = (i * (period + 1)) + 1 in
     let data_point = ref [] in
     for j = 0 to Array.length stats - 1 do
       let stat = data.(j).(ind + period) in

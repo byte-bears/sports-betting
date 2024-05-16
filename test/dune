@@ -1,3 +1,5 @@
 (tests
- (names test_sports_betting test_nn)
- (libraries ounit2 sports_betting))
+ (names test_sports_betting test_processing test_nn)
+ (libraries ounit2 sports_betting)
+ (deps
+  (glob_files *.csv)))
