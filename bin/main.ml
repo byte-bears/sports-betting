@@ -16,13 +16,8 @@ type exponentialMovingAve =
   | SimpleMovingAverage
   | WeightedMovingAverage
 
-type goodStat =
-  | REB
-  | AST
-  | STL
-  | BLK
-  | PTS
-(* rebounds, assists, steals, blocks, points *)
+(* type goodStat = | REB | AST | STL | BLK | PTS rebounds, assists, steals,
+   blocks, points *)
 
 let mat = load_string_array "data/boxscores.csv"
 let () = make_rectangular_cols mat ""
@@ -200,7 +195,6 @@ let display_nba_teams () =
 
 let linear_regression_questionnaire () =
   display_nba_teams ();
-  print_endline "";
   print_endline "Which team would you like linear regression statistics for?";
   let the_input = read_line () in
   match the_input with
@@ -219,14 +213,15 @@ let rec visualize_ema_info () =
       print_endline "W"
   | "n" ->
       print_endline "Which team would you like to perform an exponential moving";
-      print_endline "average formula on?"
+      print_endline "average formula on?";
+      display_nba_teams ()
   | _ -> visualize_ema_info ()
 
 let view_visualizations algo =
   match algo with
   | NeuralNetwork -> visualize_neural_network ()
   | LinearRegression -> linear_regression_questionnaire ()
-  | ExponentialMovingAverage -> visualize_exponential_moving_average ()
+  | ExponentialMovingAverage -> visualize_ema_info ()
 
 let rec learn_about_more_algos_or_visualize algo =
   print_endline "";
