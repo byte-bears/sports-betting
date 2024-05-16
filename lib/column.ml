@@ -85,7 +85,7 @@ let to_string n arr =
 
 let to_float_column col =
   let to_ret = Array.make (capacity col) 0. in
-  for i = 0 to col.size - 1 do
+  for i = 0 to Array.length col.data - 1 do
     to_ret.(i) <- (try float_of_string col.data.(i) with _ -> 0.)
   done;
   to_ret

@@ -1,9 +1,12 @@
 open Owl
+open Torch
+open Sports_betting
 open Sports_betting.Neural_network
 open Sports_betting.Processing
 open Sports_betting.Utils
 open Sports_betting.Load
 open Sports_betting.Ema
+open Sports_betting.Linear_regression
 
 (* Define the types of algorithms *)
 type dataOutput =
@@ -16,9 +19,6 @@ type exponentialMovingAve =
   | WeightedAverage
   | SimpleMovingAverage
   | WeightedMovingAverage
-
-let mat = load_string_array "data/boxscores.csv"
-let () = make_rectangular_cols mat ""
 
 let stats =
   [
@@ -108,6 +108,30 @@ let describe_exponential_moving_average () =
   print_endline "influenced by recent physical conditions or team";
   print_endline "strategies."
 
+let simple_average_calc player stat =
+  let mat = load_string_array "data/boxscores.csv" in
+  let () = make_rectangular_cols mat "" in
+  let data = get_player_stat mat player stat in
+  simple_average_list (List.map int_of_float (Array.to_list data))
+
+let weighted_average_calc player stat =
+  let mat = load_string_array "data/boxscores.csv" in
+  let () = make_rectangular_cols mat "" in
+  let data = get_player_stat mat player stat in
+  weighted_average_list (Array.to_list data) 0.5
+
+let simple_moving_average_calc player stat =
+  let mat = load_string_array "data/boxscores.csv" in
+  let () = make_rectangular_cols mat "" in
+  let data = get_player_stat mat player stat in
+  simple_moving_average_list (Array.to_list data)
+
+let weighted_moving_average_calc player stat =
+  let mat = load_string_array "data/boxscores.csv" in
+  let () = make_rectangular_cols mat "" in
+  let data = get_player_stat mat player stat in
+  weighted_moving_average_list 0.5 (Array.to_list data)
+
 (* Function to print descriptions *)
 let describe_ema_algorithm ema_type =
   match ema_type with
@@ -122,12 +146,12 @@ let describe_data_output data_output =
   | LinearRegression -> describe_linear_regression ()
   | ExponentialMovingAverage -> describe_exponential_moving_average ()
 
-let apply_ema_to_data ema_type =
+let apply_ema_to_data ema_type player stat =
   match ema_type with
-  | SimpleAverage -> simple_average_print ()
-  | WeightedAverage -> weighted_average_print ()
-  | SimpleMovingAverage -> simple_moving_average ()
-  | WeightedMovingAverage -> weighted_moving_average ()
+  | SimpleAverage -> [ simple_average_calc player stat ]
+  | WeightedAverage -> [ weighted_average_calc player stat ]
+  | SimpleMovingAverage -> simple_moving_average_calc player stat
+  | WeightedMovingAverage -> weighted_moving_average_calc player stat
 
 (* Function to simulate data extraction *)
 let extract_data () =
@@ -241,6 +265,8 @@ let check_in_list input list = List.mem input list
 
 let display_nba_teams () =
   print_endline "Here is the list of NBA team names:";
+  let mat = load_string_array "data/boxscores.csv" in
+  let () = make_rectangular_cols mat "" in
   let abbr, teams = teams_list mat in
   print_list teams ~interp:"\n";
   teams_list mat
@@ -260,6 +286,8 @@ let display_team_players team =
   print_string "Here is the list of players on ";
   print_string team;
   print_endline ":";
+  let mat = load_string_array "data/boxscores.csv" in
+  let () = make_rectangular_cols mat "" in
   print_list (player_list mat team) ~interp:"\n";
   player_list mat team
 
@@ -291,7 +319,7 @@ let rec choose_ema () =
   try
     let num = int_of_string input in
     match num with
-    | 1 -> SimpleAverage (* TIM'S FUNCTIONS*)
+    | 1 -> SimpleAverage
     | 2 -> WeightedAverage
     | 3 -> SimpleMovingAverage
     | 4 -> WeightedMovingAverage
@@ -316,11 +344,11 @@ let rec retrieve_ema_info () =
   let input = read_line () in
   if check_in_list input (fst teams_info) then begin
     let team_info = isolate_nba_team input teams_info in
+    let players = display_team_players (fst team_info) in
     print_string "Which player on ";
     print_string (snd team_info);
     print_endline " would you like ";
     print_endline "statistics on?";
-    let players = display_team_players (fst team_info) in
     let the_input = read_line () in
     if check_in_list the_input players then the_input else "N/A"
   end
@@ -332,8 +360,13 @@ let linear_regression_questionnaire () =
   let the_input = read_line () in
   let player = request_for_player the_input teams_info in
   let stat = choose_stat () in
-  print_string stat;
-  print_string player (* linear regression function *)
+  let mat = load_string_array "data/boxscores.csv" in
+  let () = make_rectangular_cols mat "" in
+  let data_mat, label_col = good_features mat player stat in
+  print_endline (Datatable.to_string data_mat);
+  print_endline (Column.to_string 3 label_col);
+  let out = theta_datatable data_mat label_col in
+  Tensor.print out
 
 let rec visualize_ema_info () =
   print_endline "";
@@ -350,9 +383,9 @@ let rec visualize_ema_info () =
       let player = retrieve_ema_info () in
       let stat = choose_stat () in
       let ema_type = choose_ema () in
-      apply_ema_to_data ema_type;
-      ( (* let ema_type = choose_ema () in let player = retrieve_ema_info () in
-           match ema_type with *) )
+      Utils.print_arr ~interp:", "
+        (Utils.float_to_string_arr
+           (Array.of_list (apply_ema_to_data ema_type player stat)))
   | _ -> visualize_ema_info ()
 
 let view_visualizations algo =

@@ -21,7 +21,8 @@ let float_to_string_arr arr =
 
 let print_arr ?(interp = " ") arr =
   for i = 0 to Array.length arr - 1 do
-    Printf.printf "%s%s" arr.(i) interp
+    if i = Array.length arr - 1 then print_string arr.(i)
+    else Printf.printf "%s%s" arr.(i) interp
   done;
   print_newline ()
 
