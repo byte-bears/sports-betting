@@ -1,4 +1,5 @@
-exception EmptyTable
+exception Uneven_Table
+exception Out_of_bounds
 
 type t = {
   mutable headers : string array;
@@ -13,10 +14,25 @@ let empty col row =
     size = 0;
   }
 
+let add_helper table name (col : Column.t) =
+  let () = table.headers.(table.size) <- name in
+  let () = table.dt.(table.size) <- col in
+  table.size <- table.size + 1
+
+(**)
 let add table name (col : Column.t) =
-  let () = table.headers.(col.size) <- name in
-  let () = table.dt.(col.size) <- col in
-  col.size <- col.size + 1
+  if Array.length col.data > Column.capacity table.dt.(0) then
+    add_helper table name (Column.sub col 0 (Column.capacity table.dt.(0)))
+  else if Array.length col.data < Column.capacity table.dt.(0) then
+    add_helper table name (Column.extend col (Column.capacity table.dt.(0)))
+  else add_helper table name col
+
+let remove table name col =
+  if table.size = 0 then raise Out_of_bounds
+  else
+    let () = table.headers.(table.size) <- name in
+    let () = table.dt.(table.size) <- col in
+    table.size <- table.size + 1
 
 let rec make_helper table (row : int) names = function
   | [] -> ()

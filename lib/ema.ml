@@ -12,7 +12,10 @@ let rec length lst =
   | [] -> 0
   | _ :: t -> 1 + length t
 
-let simple_average_list lst = sum lst / length lst
+let simple_average_list lst =
+  match lst with
+  | [] -> 0.
+  | _ -> float_of_int (sum lst) /. float_of_int (length lst)
 
 let weighted_average (data : Column.t) epsilon =
   Column.fold_left
