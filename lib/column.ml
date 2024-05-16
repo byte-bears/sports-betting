@@ -1,4 +1,3 @@
-exception Not_found
 exception Out_of_bounds
 
 type t = {
@@ -8,13 +7,14 @@ type t = {
 
 let empty capacity = { data = Array.make capacity ""; size = 0 }
 let size col = col.size
+let capacity col = Array.length col.data
 
 let add col elt =
   col.data.(col.size) <- elt;
   col.size <- col.size + 1
 
 let remove col =
-  if size col = 0 then raise Out_of_bounds else col.data.(col.size) <- "";
+  if size col = 0 then raise Out_of_bounds else col.data.(col.size - 1) <- "";
   col.size <- col.size - 1
 
 let get col idx =
@@ -35,3 +35,11 @@ let sub col (pos : int) (len : int) =
   new_col.data <- Array.sub col.data pos len;
   new_col.size <- len;
   new_col
+
+let extend col new_size : t =
+  if Array.length col.data >= new_size then col
+  else
+    let extra_size = new_size - Array.length col.data in
+    let extra_elements = Array.make extra_size "" in
+    let new_data = Array.append col.data extra_elements in
+    { data = new_data; size = col.size }
