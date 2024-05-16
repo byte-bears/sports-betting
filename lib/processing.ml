@@ -128,22 +128,26 @@ let interpolated_data data player stats period =
 
 (* let vstack *)
 
-(* Normalize data *)
-
 let teams_list data =
   let data = Load.filter_cols data [| "TEAM_ABBREVIATION"; "TEAM_NAME" |] in
   let visited = ref [] in
+  let ret_abb = ref [] in
   let ret = ref [] in
   for i = 1 to Array.length data.(0) - 1 do
     let team = data.(1).(i) in
     if not (List.mem team !visited) then (
       visited := team :: !visited;
+      ret_abb := data.(0).(i) :: !ret_abb;
       ret := Printf.sprintf "%s (%s)" data.(1).(i) data.(0).(i) :: !ret)
   done;
-  !ret
+  (!ret_abb, !ret)
 
-(* let teams_list data = let teams = Load.get_col data "TEAM_ABBREVIATION" in if
-   teams = [||] then failwith "Team column doesn't exist, cannot make new data";
-   let teams = Array.to_list teams in let teams = List.unique teams in match
-   teams with | [] -> failwith "Team column doesn't exist, cannot make new data"
-   | h :: t -> t *)
+let player_list data team =
+  let data = Load.filter_cols data [| "PLAYER_NAME"; "TEAM_ABBREVIATION" |] in
+  let data = Load.filter_by_col data "TEAM_ABBREVIATION" team in
+  let players = Load.get_col data "PLAYER_NAME" in
+  let players = Array.to_list players in
+  let players = List.unique players in
+  match players with
+  | [] -> failwith "Team column doesn't exist, cannot make new data"
+  | h :: t -> t
