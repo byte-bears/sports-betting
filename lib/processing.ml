@@ -1,39 +1,58 @@
 open Batteries
 
+let team_encoding_east team =
+  match team with
+  | "BOS" -> "0"
+  | "BKN" -> "1"
+  | "NYK" -> "2"
+  | "PHI" -> "3"
+  | "TOR" -> "4"
+  | "CHI" -> "5"
+  | "CLE" -> "6"
+  | "DET" -> "7"
+  | "IND" -> "8"
+  | "MIL" -> "9"
+  | "ATL" -> "10"
+  | "CHA" -> "11"
+  | "MIA" -> "12"
+  | "ORL" -> "13"
+  | "WAS" -> "14"
+  | team -> failwith ("This team (" ^ team ^ ") does not exist")
+
 let team_encoding team =
   match team with
-  | "ATL" -> "0"
-  | "BOS" -> "1"
-  | "BKN" -> "2"
-  | "CHA" -> "3"
-  | "CHI" -> "4"
-  | "CLE" -> "5"
-  | "DAL" -> "6"
-  | "DEN" -> "7"
-  | "DET" -> "8"
-  | "GSW" -> "9"
-  | "HOU" -> "10"
-  | "IND" -> "11"
-  | "LAC" -> "12"
-  | "LAL" -> "13"
-  | "MEM" -> "14"
-  | "MIA" -> "15"
-  | "MIL" -> "16"
-  | "MIN" -> "17"
-  | "NOP" -> "18"
-  | "NYK" -> "19"
-  | "OKC" -> "20"
-  | "ORL" -> "21"
-  | "PHI" -> "22"
-  | "PHX" -> "23"
-  | "POR" -> "24"
-  | "SAC" -> "25"
-  | "SAS" -> "26"
-  | "TOR" -> "27"
-  | "UTA" -> "28"
-  | "WAS" -> "29"
   | "OPP" -> "OPP"
-  | team -> failwith ("This team (" ^ team ^ ") does not exist")
+  | "DEN" -> "0"
+  | "MIN" -> "1"
+  | "OKC" -> "2"
+  | "POR" -> "3"
+  | "UTA" -> "4"
+  | "GSW" -> "5"
+  | "LAC" -> "6"
+  | "LAL" -> "7"
+  | "PHX" -> "8"
+  | "SAC" -> "9"
+  | "DAL" -> "10"
+  | "HOU" -> "11"
+  | "MEM" -> "12"
+  | "NOP" -> "13"
+  | "SAS" -> "14"
+  | team -> team_encoding_east team
+
+let matchup_helper size matchups teams opp home =
+  for i = 1 to size - 1 do
+    let matchup = matchups.(i) in
+    let team = teams.(i) in
+    let split = Str.split (Str.regexp " ") matchup in
+    let team1 = List.nth split 0 in
+    let symb = List.nth split 1 in
+    let team2 = List.nth split 2 in
+    let team1 = Utils.strip_str team1 in
+    let symb = Utils.strip_str symb in
+    let team2 = Utils.strip_str team2 in
+    if team1 = team then opp.(i) <- team2 else opp.(i) <- team1;
+    if symb = "@" then home.(i) <- "0" else home.(i) <- "1"
+  done
 
 let add_matchup_stats data =
   let size = Array.length data.(0) in
@@ -50,26 +69,22 @@ let add_matchup_stats data =
   let teams = Load.get_col data "TEAM_ABBREVIATION" in
   if matchups = [||] || teams = [||] then
     failwith "Matchup or team column doesn't exist, cannot make new data";
-
-  for i = 1 to size - 1 do
-    let matchup = matchups.(i) in
-    let team = teams.(i) in
-    let matchup = Str.global_replace (Str.regexp "vs.") "@" matchup in
-    let split = Str.split (Str.regexp "@") matchup in
-    let team1 = List.nth split 0 in
-    let team2 = List.nth split 1 in
-    let team1 = Utils.strip_str team1 in
-    let team2 = Utils.strip_str team2 in
-    if team1 = team then (
-      opp.(i) <- team2;
-      home.(i) <- "0")
-    else (
-      opp.(i) <- team1;
-      home.(i) <- "1")
-  done;
+  let () = matchup_helper size matchups teams opp home in
   let opp = Array.map team_encoding opp in
   let data = Load.add_col data opp in
   let data = Load.add_col data home in
+  data
+
+let get_player_data data player =
+  let data = Load.filter_by_col data "PLAYER_NAME" player in
+  let data = add_matchup_stats data in
+  data
+
+let get_player_stats data player stats =
+  let data = Load.filter_by_col data "PLAYER_NAME" player in
+  let features = Array.append [| "PLAYER_NAME" |] stats in
+  let data = add_matchup_stats data in
+  let data = Load.filter_cols data features in
   data
 
 let get_player_stat data player stat =
@@ -86,12 +101,49 @@ let period_data data_f data player stat period =
   let full_data = data_f data player stat in
   let data = ref [] in
   let labels = ref [] in
-  for i = 0 to Array.length full_data - period - 1 do
-    let data_point = Array.sub full_data i period in
-    let label = full_data.(i + period) in
+  let max_loop = (Array.length full_data / period) - 1 in
+  for i = 0 to max_loop do
+    let ind = i * period in
+    let data_point = Array.sub full_data ind period in
+    let label = full_data.(ind + period) in
     data := data_point :: !data;
     labels := label :: !labels
   done;
   let data = Array.of_list (List.rev !data) in
   let labels = Array.of_list (List.rev !labels) in
   (data, labels)
+
+let interpolated_data data player stats period =
+  let cols = Array.append [| "PLAYER_NAME" |] stats in
+  let data = Load.filter_cols data cols in
+  let data = Load.filter_by_col data "PLAYER_NAME" player in
+  let out = ref [] in
+  let max_loop = (Array.length data / period) - 1 in
+  for i = 0 to max_loop do
+    let ind = ((i + 1) * period) - 1 in
+    let data_point = Array.sub data ind period in
+    out := data_point :: !out
+  done;
+  !out
+
+(* let vstack *)
+
+(* Normalize data *)
+
+let teams_list data =
+  let data = Load.filter_cols data [| "TEAM_ABBREVIATION"; "TEAM_NAME" |] in
+  let visited = ref [] in
+  let ret = ref [] in
+  for i = 1 to Array.length data.(0) - 1 do
+    let team = data.(1).(i) in
+    if not (List.mem team !visited) then (
+      visited := team :: !visited;
+      ret := Printf.sprintf "%s (%s)" data.(1).(i) data.(0).(i) :: !ret)
+  done;
+  !ret
+
+(* let teams_list data = let teams = Load.get_col data "TEAM_ABBREVIATION" in if
+   teams = [||] then failwith "Team column doesn't exist, cannot make new data";
+   let teams = Array.to_list teams in let teams = List.unique teams in match
+   teams with | [] -> failwith "Team column doesn't exist, cannot make new data"
+   | h :: t -> t *)

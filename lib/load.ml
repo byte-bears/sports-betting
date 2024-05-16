@@ -22,9 +22,7 @@ let filter_cols data features_arr =
         acc)
       (Hashtbl.create 32) features_arr
   in
-
   let headers = Array.map (fun col -> col.(0)) data in
-
   let indices_to_keep =
     Array.fold_left
       (fun acc (hdr, idx) ->
@@ -33,11 +31,9 @@ let filter_cols data features_arr =
       (Array.mapi (fun idx hdr -> (hdr, idx)) headers)
     |> List.rev
   in
-
   let filtered_data =
     Array.map (fun idx -> data.(idx)) (Array.of_list indices_to_keep)
   in
-
   filtered_data
 
 let rec add_if_true acc bools col ind =
