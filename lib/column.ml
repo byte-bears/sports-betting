@@ -1,5 +1,9 @@
 exception Out_of_bounds
 
+(* AF: The mutable string array data [[s1; ... ; sn]] represents a column and
+   where s1; ... ; sn are the string representations of the contents of the
+   column. *)
+(* RI: none*)
 type t = {
   mutable data : string array;
   mutable size : int;

@@ -1,6 +1,12 @@
 exception Uneven_Table
 exception Out_of_bounds
 
+(* AF: Is of a record type. Inside the record the mutable column.t array data
+   [[c1; ... ; cn]] represents a datatable and where c1; ... ; cn are the
+   columns of the datatable. The mutable string array headers represents the
+   headers for each column. The mutable int size represents number of elements
+   (that are not empty strings) that exist in our datatable*)
+(* RI: The capacity of each column in our datatable must have the same length*)
 type t = {
   mutable headers : string array;
   mutable dt : Column.t array;
