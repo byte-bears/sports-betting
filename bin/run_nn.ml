@@ -9,6 +9,8 @@ let () =
   let inputs = List.init 10 (fun _ -> Mat.uniform 1 5) in
   let actuals = List.init 10 (fun _ -> Mat.uniform 1 5) in
 
+  List.iter (fun input -> Mat.print input) inputs;
+  List.iter (fun actual -> Mat.print actual) actuals;
   let epochs = 1000 in
   let learning_rate = 0.01 in
   let trained_network = train network inputs actuals epochs learning_rate in

@@ -79,3 +79,13 @@ let print_mat_colwise mat =
     done;
     Printf.printf "\n"
   done
+
+let transpose mat =
+  let n_rows, n_cols = shape mat in
+  let new_mat = Array.make_matrix n_cols n_rows "" in
+  for i = 0 to n_rows - 1 do
+    for j = 0 to n_cols - 1 do
+      new_mat.(j).(i) <- mat.(i).(j)
+    done
+  done;
+  new_mat
