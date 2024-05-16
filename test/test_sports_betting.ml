@@ -394,7 +394,7 @@ let test_datatable =
                     size = 3;
                   }) );
          ( "to string 2 column" >:: fun _ ->
-           assert_equal "\ntest1 ||1     |2\nhi    ||2     |3\nhello ||3     |4"
+           assert_equal "\ntest1 ||1|2\nhi    ||2|3\nhello ||3|4"
              (Datatable.to_string
                 Datatable.
                   {
@@ -410,9 +410,9 @@ let test_datatable =
          ( "to string 3 column" >:: fun _ ->
            assert_equal
              "\n\
-              test1       ||1           |2           |3\n\
-              hi          ||2           |3           |hello world\n\
-              asdf        ||3           |4           |hi"
+              test1 ||1          |2          |3\n\
+              hi    ||2          |3          |hello world\n\
+              asdf  ||3          |4          |hi"
              (Datatable.to_string
                 Datatable.
                   {
@@ -429,9 +429,9 @@ let test_datatable =
          ( "to string 3 column with column name as longest" >:: fun _ ->
            assert_equal
              "\n\
-              test1sdf ||1        |2        |3\n\
-              hi       ||2        |3        |hello\n\
-              asdf     ||3        |4        |hi"
+              test1sdf ||1    |2    |3\n\
+              hi       ||2    |3    |hello\n\
+              asdf     ||3    |4    |hi"
              (Datatable.to_string
                 Datatable.
                   {
