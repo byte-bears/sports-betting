@@ -1,5 +1,8 @@
 open Owl
 open Sports_betting.Neural_network
+open Sports_betting.Processing
+open Sports_betting.Utils
+open Sports_betting.Load
 
 (* Define the types of algorithms *)
 type dataOutput =
@@ -20,6 +23,9 @@ type goodStat =
   | BLK
   | PTS
 (* rebounds, assists, steals, blocks, points *)
+
+let mat = load_string_array "data/boxscores.csv"
+let () = make_rectangular_cols mat ""
 
 let simple_average_print () =
   print_endline "";
@@ -189,7 +195,8 @@ let visualize_neural_network () =
 
 let display_nba_teams () =
   print_endline "";
-  print_endline "Here is the list of NBA team names:"
+  print_endline "Here is the list of NBA team names:";
+  print_list (teams_list mat) ~interp:"\n"
 
 let linear_regression_questionnaire () =
   display_nba_teams ();
