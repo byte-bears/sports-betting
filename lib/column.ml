@@ -44,16 +44,34 @@ let extend col new_size : t =
     let new_data = Array.append col.data extra_elements in
     { data = new_data; size = col.size }
 
-let rec to_string_list lst =
-  match lst with
-  | [] -> ""
-  | h :: t -> h ^ " " ^ to_string_list t
-
-let to_string arr = to_string (Array.to_list arr.data)
-
 let string_of_array_with_spaces n arr =
-  let rec spaces n = if n <= 0 then "" else " " ^ spaces (n - 1) in
-  let space_str = spaces n in
-  Array.fold_left
-    (fun acc elem -> if acc = "" then elem else acc ^ space_str ^ elem)
-    "" arr
+  let rec spaces m = if m <= 0 then "" else " " ^ spaces (m - 1) in
+  let with_spaces elem =
+    let spaces_needed = n - String.length elem in
+    elem ^ spaces spaces_needed
+  in
+  let concatenated =
+    Array.fold_left
+      (fun acc elem ->
+        let elem_with_spaces = with_spaces elem in
+        if acc = "" then elem_with_spaces else acc ^ "|" ^ elem_with_spaces)
+      "" arr
+  in
+  String.trim concatenated
+
+let max_length_arr arr =
+  let rec find_max idx current_max =
+    match idx with
+    | _ when idx >= Array.length arr -> current_max
+    | _ ->
+        let len = String.length arr.(idx) in
+        let new_max = if len > current_max then len else current_max in
+        find_max (idx + 1) new_max
+  in
+  find_max 0 0
+
+let to_string n arr =
+  if Array.length arr.data > n then raise Out_of_bounds
+  else string_of_array_with_spaces n arr.data
+
+let max_length arr = max_length_arr arr.data
