@@ -7,6 +7,9 @@ type t = {
   mutable size : int;
 }
 
+let col_num table = Array.length table.dt
+let row_num table = Column.capacity table.dt.(0)
+
 let empty col row =
   {
     headers = Array.make col " ";
@@ -25,21 +28,6 @@ let add table name (col : Column.t) =
   else if Array.length col.data < Column.capacity table.dt.(0) then
     add_helper table name (Column.extend col (Column.capacity table.dt.(0)))
   else add_helper table name col
-
-let rec make_helper table (row : int) names = function
-  | [] -> ()
-  | h :: t -> begin
-      match names with
-      | [] -> ()
-      | name :: t2 ->
-          let () = add table name (Column.make h (Column.empty row)) in
-          make_helper table row t2 t
-    end
-
-let make file names dt =
-  let columns = Csv.transpose (Csv.load file) in
-  let rows = List.length (List.nth columns 0) in
-  make_helper dt rows names columns
 
 let max_length_arr dt =
   let max_len = ref 0 in
@@ -65,3 +53,20 @@ let to_string dt =
       ^ Column.to_string max dt.dt.(i)
   done;
   !str
+
+let to_float_array (table : t) =
+  let to_ret = Array.make (col_num table) [| 0. |] in
+  for i = 0 to table.size do
+    to_ret.(i) <- Column.to_float_column table.dt.(i)
+  done;
+  to_ret
+
+let make (matrix : string array array) (names : string array) =
+  let col_nums = Array.length matrix in
+  let row_nums = Array.length matrix.(0) in
+  let to_ret = empty col_nums row_nums in
+  for i = 0 to col_nums do
+    to_ret.dt.(i) <- Column.make_from_array matrix.(i) (Column.empty row_nums)
+  done;
+  to_ret.headers <- names;
+  to_ret
