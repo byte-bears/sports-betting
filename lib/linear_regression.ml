@@ -1,4 +1,6 @@
 open Torch
+open Datatable
+open Column
 
 let theta x y =
   (* Convert input data to matrix and vector *)
@@ -30,3 +32,6 @@ let theta x y =
 
   (* Final matrix multiplication to compute regression coefficients *)
   Tensor.matmul xtx_inv xty
+
+let theta_datatable datatable column =
+  theta (Datatable.to_float_array datatable) (Column.to_float_column column)

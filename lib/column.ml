@@ -28,6 +28,13 @@ let rec make lst col =
       let () = add col h in
       make t col
 
+let make_from_array array col =
+  let col = empty (Array.length array + 1) in
+  for i = 0 to Array.length array do
+    col.data.(i) <- array.(i)
+  done;
+  col
+
 let fold_left f x y = Array.fold_left f x y.data
 
 let sub col (pos : int) (len : int) =
@@ -75,3 +82,10 @@ let to_string n arr =
   else string_of_array_with_spaces n arr.data
 
 let max_length arr = max_length_arr arr.data
+
+let to_float_column col =
+  let to_ret = Array.make (capacity col) 0. in
+  for i = 0 to col.size - 1 do
+    to_ret.(i) <- (try float_of_string col.data.(i) with _ -> 0.)
+  done;
+  to_ret
