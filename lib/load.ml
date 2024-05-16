@@ -12,7 +12,7 @@ let load_float_col arr =
        (fun str -> try Some (float_of_string str) with Failure _ -> None)
        (Array.to_list arr))
 
-let load_float_array arr = Array.map load_float_col arr
+let load_float_array mat = Array.map load_float_col mat
 
 let filter_cols data features_arr =
   let features_set =
@@ -89,32 +89,32 @@ let add_col a b =
   Array.set result (new_size - 1) b;
   result
 
-let is_rectangular arr =
-  if Array.length arr = 0 then true
+let is_rectangular mat =
+  if Array.length mat = 0 then true
   else
-    let first_col_length = Array.length arr.(0) in
-    Array.for_all (fun col -> Array.length col = first_col_length) arr
+    let first_col_length = Array.length mat.(0) in
+    Array.for_all (fun col -> Array.length col = first_col_length) mat
 
-let max_length arr =
+let max_length mat =
   let m_len = ref 0 in
-  for i = 0 to Array.length arr - 1 do
-    m_len := max !m_len (Array.length arr.(i))
+  for i = 0 to Array.length mat - 1 do
+    m_len := max !m_len (Array.length mat.(i))
   done;
   !m_len
 
-let make_rectangular_rows arr =
-  let max_len = max_length arr in
+let make_rectangular_rows mat =
+  let max_len = max_length mat in
   Array.map
     (fun row ->
       if Array.length row < max_len then
         Array.append row (Array.make (max_len - Array.length row) (-1.0))
       else row)
-    arr
+    mat
 
-let make_rectangular_cols arr fill =
-  let max_len = max_length arr in
-  for i = 0 to Array.length arr - 1 do
-    let len = Array.length arr.(i) in
+let make_rectangular_cols mat fill =
+  let max_len = max_length mat in
+  for i = 0 to Array.length mat - 1 do
+    let len = Array.length mat.(i) in
     if len < max_len then
-      arr.(i) <- Array.append arr.(i) (Array.make (max_len - len) fill)
+      mat.(i) <- Array.append mat.(i) (Array.make (max_len - len) fill)
   done
