@@ -118,12 +118,12 @@ let interpolated_data data player stats period =
   let data = add_matchup_stats data in
   let data = Load.filter_cols data stats in
   let out = ref [] in
-  let max_loop = (Array.length data.(0) / (period + 1)) - 1 in
+  let max_loop = ((Array.length data.(0) - 1) / (period + 1)) - 1 in
   for i = 0 to max_loop do
-    let ind = (i + 1) * (period + 1) in
+    let ind = i * (period + 1) in
     let data_point = ref [] in
     for j = 0 to Array.length stats - 1 do
-      let stat = data.(j).(ind) in
+      let stat = data.(j).(ind + period) in
       data_point := stat :: !data_point
     done;
     out := Array.of_list (List.rev !data_point) :: !out
@@ -133,7 +133,8 @@ let interpolated_data data player stats period =
 let stack data1 data2 =
   let size1 = Array.length data1 in
   let size2 = Array.length data2 in
-  if size1 <> size2 then failwith "Data sizes do not match";
+  if size1 <> size2 then
+    failwith (Printf.sprintf "Data sizes do not match (%i) (%i)" size1 size2);
   let ret = Array.make size1 [||] in
   for i = 0 to size1 - 1 do
     let row1 = data1.(i) in
@@ -172,7 +173,11 @@ let good_features data player ?(period = 3) stat =
   let add = interpolated_data data player [| "OPP"; "HOME" |] period in
   let ret = stack (Utils.float_to_string_mat (fst past)) add in
   let labels = snd past in
-  let label_col = Column.make_from_array (Utils.float_to_string_arr labels) in
+  let label_col =
+    Column.make_from_array
+      (Utils.float_to_string_arr labels)
+      (Column.empty (Array.length labels))
+  in
   let cols = Array.make (period + 2) "" in
   for i = 0 to period - 1 do
     cols.(i) <- Printf.sprintf "%s_%d" stat (i + 1)

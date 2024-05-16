@@ -54,11 +54,11 @@ let to_string dt =
   !str
 
 let to_float_array (table : t) =
-  let to_ret = Array.make (col_num table) [| 0. |] in
-  for i = 0 to table.size do
-    to_ret.(i) <- Column.to_float_column table.dt.(i)
+  let to_ret = ref [] in
+  for i = 0 to Array.length table.dt - 1 do
+    to_ret := Column.to_float_column table.dt.(i) :: !to_ret
   done;
-  to_ret
+  Array.of_list (List.rev !to_ret)
 
 let make (matrix : string array array) (names : string array) =
   let col_nums = Array.length matrix in
