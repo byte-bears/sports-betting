@@ -2,13 +2,12 @@ open Owl
 open Sports_betting.Neural_network
 
 let () =
-  (* Step 1: Define the network architecture *)
-  let layers = [ Dense (1, ReLU); Dense (1, Sigmoid) ] in
-  (* Simple network with one hidden layer *)
-  let input_dim = 1 in
+  (* Define the network architecture *)
+  let layers = [ Dense (5, ReLU); Dense (5, Sigmoid) ] in
+  let input_dim = 5 in
   let network = create layers input_dim in
-  let inputs = List.init 4 (fun _ -> Mat.uniform 1 1) in
-  let actuals = List.init 4 (fun _ -> Mat.uniform 1 1) in
+  let inputs = List.init 10 (fun _ -> Mat.uniform 1 5) in
+  let actuals = List.init 10 (fun _ -> Mat.uniform 1 5) in
 
   let epochs = 1000 in
   let learning_rate = 0.01 in
