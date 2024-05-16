@@ -5,12 +5,12 @@ let strip_str str =
     let ret = Str.replace_first (Str.regexp "^[ \t\n]+") "" str in
     Str.replace_first (Str.regexp "[ \t\n]+$") "" ret
 
-let rec print_list lst =
+let rec print_list ?(interp = " ") lst =
   match lst with
   | [] -> Printf.printf "\n"
   | h :: t ->
-      Printf.printf "%s " h;
-      print_list t
+      Printf.printf "%s%s" h interp;
+      print_list t ~interp
 
 let float_to_string_arr arr =
   let new_arr = Array.make (Array.length arr) "" in
