@@ -1,8 +1,432 @@
+commit c8e50dcb46bb417ace47c300bb3b7136d178e43a
+Merge: 55bda41 405ea48
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Thu May 16 20:18:04 2024 -0400
+
+    Merge pull request #26 from byte-bears/tanish
+    
+    edited yaml file with new and improved project description
+        - updated description of sports betting both
+        - added more information to INSTALL file
+
+commit 405ea489388885cc9d8621397de20c80823047bd
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Thu May 16 20:17:24 2024 -0400
+
+    edited yaml file with new and improved project description
+    - updated description of sports betting both
+    - added more information to INSTALL file
+
+commit 55bda413ff18eb15fa4d459f2903b66d32dc5277
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Thu May 16 19:29:42 2024 -0400
+
+    Finished testing and documentation
+    
+    - Created lin reg mli
+    - Added documentation to linear regression and nn mli
+    - Finished testing for processing :)
+    - Fixed INSTALL.md
+    
+    Co-authored-by: Timothy Li (tjl243) <tjl243@cornell.edu>
+
+commit 7c8bb76418dd369d865c67f102de9ef9d8130d58
+Merge: 99b3639 f0730ec
+Author: Anthony Song (abs343) <abs343@cornell.edu>
+Date:   Thu May 16 12:48:59 2024 -0400
+
+    Merge branch 'main' of github.com:byte-bears/sports-betting
+
+commit 99b3639b588c997524e2ecb74219ddd2024e4d59
+Author: Anthony Song (abs343) <abs343@cornell.edu>
+Date:   Thu May 16 12:48:17 2024 -0400
+
+    Created column.mli and datatable.mli
+    - included documentation and specifications
+    - added exposed functions to mli file
+
+commit f0730ecdf3b57251c14b5b7c75cabe67028b7052
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Thu May 16 08:46:22 2024 -0400
+
+    Added specifications to modules
+    - load, processing, and utils specifications
+    - mli files for respective modules
+
+commit 696a4017304bde7c2da463b413d4692f401a8117
+Merge: 993eac2 81e429d
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Thu May 16 07:16:55 2024 -0400
+
+    Merge pull request #25 from byte-bears/eric
+    
+    Eric
+
+commit 81e429d0d9b7b987db7ba4f630e0a6aa59cc6449
+Merge: 20f9bda 993eac2
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Thu May 16 07:16:32 2024 -0400
+
+    Merge branch 'main' into eric
+
+commit 993eac219838d1d34e00d5038d3a911857d686b9
+Merge: 8c7adbf 4a3a9d8
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Thu May 16 07:11:55 2024 -0400
+
+    Merge pull request #24 from byte-bears/tanish
+    
+    Tanish
+
+commit 4a3a9d8b42273d3cc8ad6b8547439f46aa8e46f2
+Merge: f53d1b9 8c7adbf
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Thu May 16 07:11:17 2024 -0400
+
+    Merge branch 'main' into tanish
+
+commit f53d1b9ac63073a082b84050dd204c00bc770fa5
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Thu May 16 06:52:32 2024 -0400
+
+    Finished main ml executable file
+    
+    - Added ema functions and code
+    - Added linear regression functionality
+    - Debugged problems with linear regression and data table
+
+commit 7f7ba9080b8dbfe2c598f156e1c7a14c433c5db5
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Thu May 16 05:18:56 2024 -0400
+
+    Finished all processing changes
+
+commit 183c2a914b81e64d2500dd05cfc89c1258b4c9b3
+Author: Anthony Song (abs343) <abs343@cornell.edu>
+Date:   Thu May 16 04:17:33 2024 -0400
+
+    Column and datatable added functionalities
+    - Made to_float_column and to_float_array to convert columns/datatables to float arrays and float matrices
+    - Fixed the Make function and Make_From_Array function
+
+commit dd7331f0d7e86401caf2760e03c548064c02c017
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Thu May 16 05:19:44 2024 -0400
+
+    finalizing main
+    - changed small bug involving teams
+    - second iteration causes teams list to be almost emptied
+    - reload list data every time
+
+commit a4344c0f2fac6e22851bb8dbb98c3d85bd3a752b
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Thu May 16 01:48:55 2024 -0400
+
+    Finished player and team data
+    - data retrieval from processing
+    - wrapping up getting data and putting into table
+
+commit 9c2cd2bdf1ca66d3919a01cd854025b680f6e548
+Author: Anthony Song (abs343) <abs343@cornell.edu>
+Date:   Thu May 16 01:29:41 2024 -0400
+
+    Author: Anthony Song (abs343) and Timothy Li (tjl243)
+    - Implemented test cases for datatable and column
+    - In data table and column implemented to_string and max_length
+    - Added extend method to column
+    - Changed add in datatable to allow column expansion and column compression
+
+commit 0f5cb9b25c4a335783a92a9dc349b37cfa60a7bb
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Thu May 16 01:40:46 2024 -0400
+
+    implemented other file functions into main
+    - algorithm application after user selects dataset
+    - dataset parsing after user selects
+    - functions to call the algorithms
+
+commit 844e219683ddc81ced7de43a81943b90f4353cda
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Thu May 16 01:32:18 2024 -0400
+
+    Add teams function
+    - created function for user interface
+    - gets list of teams
+
+commit 09e7d85a9f86b475cd47dd1b92a576494998bd35
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Thu May 16 00:29:52 2024 -0400
+
+    Fixed problems with processing.ml
+    - Fixed functions over 20 lines in processing
+    - Fixed period data using overlapping data
+
+commit 0b8684112adc9058d11cd3909007fdf1f70d72d7
+Author: Anthony Song (abs343) <abs343@cornell.edu>
+Date:   Wed May 15 23:35:59 2024 -0400
+
+    Test cases and updates to column
+    - test cases for column after some debugging of column
+    - updated add functionality and make functional
+
+    
+commit c17dd1a5ff7ac0b2af3e133383897dba7536fa2f
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Wed May 15 23:26:42 2024 -0400
+
+    Neural Network
+    
+    Co-authored-by: Selena Zheng (sz389) <sz389@cornell.edu>
+    - Fixed processing for neural networks
+    - Added nenural neural networks to main executable ui
+
+commit 34a001658d3896885526ba0476197a48efcdec65
+Author: Anthony Song (abs343) <abs343@cornell.edu>
+Date:   Wed May 15 22:59:26 2024 -0400
+
+    More testing
+
+    Author: Anthony Song (abs343) and Timothy Li (tjl243)
+    - Added more test cases for test datatable
+    - Added tests for simple average
+    - Added tests for wma
+    - Added tests for sma
+
+commit 989f1ce13eaa15dfd051610cf8b492a4fd3790bc
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Wed May 15 16:48:20 2024 -0400
+
+    NN sample
+    
+    - Completed neural network for sample dataset
+    - Got raw values for outputs
+
+commit 7add9ce0e78a9059be4598e462403a7b536952dc
+Merge: c934751 93cc2e3
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Wed May 15 12:55:17 2024 -0400
+
+    Merge pull request #19 from byte-bears/main
+    
+    merge main into tanish
+
+commit f2a40343068196c2d7df6c1400a51df18b892be4
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Fri Apr 26 01:21:31 2024 -0400
+
+    Added svm work
+    
+    - Tried to use sklearn but not fully working
+    - Created files to load data using numpy
+
+commit 6266fd5cbaff7fd407049ae3ce9c3483c92c929f
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Thu Apr 25 22:56:48 2024 -0400
+
+    Adjusting project setup
+    
+    - Added sklearn-ocaml library in INSTALL.md
+    - Adjusted how executables work in bin
+
+commit a0d6a6b949b4cf90c97202c4994947b780f5558a
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Thu Mar 28 00:35:03 2024 -0400
+
+    Updated yaml file
+
+    - Updated project description
+
+commit a104b21badfb096363a069c2d01deec40e08c720
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Wed May 15 12:48:44 2024 -0400
+
+    NN forward
+    
+    - created neural network forward method
+    - implemented forward pass using matrix operations
+
+commit 93cc2e3e2e7585ab47cae63287d6389d9602d4ba
+Merge: bc7c5e7 78ce9b8
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Mon May 13 19:57:22 2024 -0400
+
+    Merge pull request #18 from byte-bears/eric
+    
+    Got rid of Owl dependency, using torch instead
+
+commit 78ce9b826667bd7f30849c72e9cb54cff632015e
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Mon May 13 19:47:53 2024 -0400
+
+    Got rid of Owl dependency, using torch instead
+    
+    - Attempted to get code working on macs by switching from Owl to Torch
+    - Changed linear regression to use Torch
+    - Adjusted dependencies accordingly
+
+commit bc7c5e74ac1676d5bbb7a9f857c8fa46e8dfe45b
+Merge: e395898 a540df5
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Mon May 13 19:17:20 2024 -0400
+
+    Merge pull request #17 from byte-bears/eric
+    
+
+commit a540df544dff35c595c2b0812c9799f0f1bb7cc7
+Merge: e517b2e e395898
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Mon May 13 19:16:17 2024 -0400
+
+    Merge branch 'main' into eric
+
+commit e517b2e91beac49ccc067e0c5d8a5e3a27aad909
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Fri May 10 04:32:40 2024 -0400
+
+    Got data processing working properly
+    
+    - Added temporary test run file
+    - Added torch and batteries in dune files
+    - Created new functions in load to:
+         - Determine max length
+         - Make matrix rectangular by columns after identifying issue with FT_PERCENTAGE
+         - Filter data by value in a certain column
+    - Created utilities file to help with printing and to string and stripping whitespace and miscellaneous things
+    - Created processing file to prepare data in special format for models
+
+commit e3958985674f1f6f3e505c2dc2a0e17e75c45a61
+Author: Anthony Song (abs343) <abs343@cornell.edu>
+Date:   Thu May 9 01:35:47 2024 -0400
+
+    Started testing
+
+    Anthony Song (abs343) and Timothy Li (tjl243)
+    - Implementing some tests for our column and datatable modules
+    - Started on test cases for ema
+
+commit cc174b0adb61dd93789f2f92ca0702bbecbb827d
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Thu May 9 00:43:18 2024 -0400
+
+    NN initialization
+
+    - created functionality to initialize neural network given layer list
+    - weights are biases are randomly initialized
+
+commit 85bf2876dfe9ccb8efa1b161a71ee20c30354919
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Thu May 9 00:07:03 2024 -0400
+
+    Started neural network
+
+    - Implemented structure for neural network
+    - mli file and defined activation functions
+
+commit ad0ca2d3ad6fd3031a92888af631f1ba4403cf95
+Merge: 907bda7 35f3caa
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Fri Apr 26 01:25:34 2024 -0400
+
+    Merge pull request #16 from byte-bears/eric
+    
+    Eric
+
+commit 35f3caab9a285aeb164b039e15cc7e250a71c334
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Fri Apr 26 01:25:03 2024 -0400
+
+    Problems with scikit-learn
+    
+    - Deleted svm and scikit-learn stuff since they didn't work due to python version inconsistencies
+    - Removed dependencies from INSTALL file
+
+commit f2687cde5e6829693a48b2c6ea7d05aa62125240
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Fri Apr 26 01:21:31 2024 -0400
+
+    Added svm work
+    
+    - Tried to use sklearn but not fully working
+    - Created files to load data using numpy
+
+commit 8bcbaf4f60bfbd9bc299e316fa761d860798d227
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Thu Apr 25 22:56:48 2024 -0400
+
+    Adjusting project setup
+    
+    - Added sklearn-ocaml library in INSTALL.md
+    - Adjusted how executables work in bin
+
+commit 907bda77b1765b2b992b6f75c4e3f52c5363446d
+Merge: f78ed49 dcaefd2
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Thu Apr 25 10:31:00 2024 -0400
+
+    Merge pull request #15 from byte-bears/tanish
+    
+    Tanish
+
+commit dcaefd2f49258905be45d60157ae7f5452510f4e
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Thu Apr 25 10:30:13 2024 -0400
+
+    Linear regression implemented from scratch
+
+    - Got basic linear regression working using closed form
+    - Debugged formula and got Owl working properly
+
+commit f78ed49749a061195e2785f55dcddf45d2dcef4f
+Merge: f774de0 8c23e12
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Thu Mar 28 00:35:32 2024 -0400
+
+    Merge pull request #14 from byte-bears/eric
+    
+    Updated yaml file
+
+commit 8c23e12087fbd6926d4652b2ea5d6a3b27f03110
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Thu Mar 28 00:35:03 2024 -0400
+
+    Updated yaml file
+
+commit f774de0e475830accf1253908b8f163060a4035e
+Merge: 8c0f635 cfb3e9c
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Thu Mar 28 00:33:48 2024 -0400
+
+    Merge pull request #13 from byte-bears/tanish
+    
+    edited project description yaml file
+
+commit cfb3e9c3cae00b4bfcb4aafeb71e2d3d74e85be4
+Merge: 669ac8e 8c0f635
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
+Date:   Thu Mar 28 00:33:43 2024 -0400
+
+    Merge branch 'main' into tanish
+
+commit 8c0f635bf300c7cc67990e14955a1e2e014a4228
+Merge: e49ed23 3751bb6
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Thu Mar 28 00:23:53 2024 -0400
+
+    Merge pull request #12 from byte-bears/eric
+    
+    Sync main with eric
+
+commit 3751bb6c32e06d33f2d47b49440d3f78b5101cf3
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
+Date:   Thu Mar 28 00:21:28 2024 -0400
+
+    Merged request and updated gitlog
+
 commit 73029f8a32a09b43d60dc267d81e8c0b155642d9
-Author: Timothy Li <tjl243@cornell.edu>
+Author: Timothy Li (tjl243) <tjl243@cornell.edu>
 Date:   Thu Mar 28 00:08:56 2024 -0400
 
-    added list functionality for moving averages
+    Added list functionality for moving averages
     
     - both tail recursive
     - weighted moving average
@@ -10,7 +434,7 @@ Date:   Thu Mar 28 00:08:56 2024 -0400
 
 commit 0d1469666542633ae16b8f9ae9b36d2af5f86eb2
 Merge: 7fb012b 63e4e4b
-Author: Tanish Tyagi <tt556@cornell.edu>
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
 Date:   Wed Mar 27 23:37:33 2024 -0400
 
     Merge pull request #9 from byte-bears/tanish
@@ -18,17 +442,17 @@ Date:   Wed Mar 27 23:37:33 2024 -0400
     merge csv input
 
 commit 947cd6414c46f73b748c8a2b8c11aa061040474a
-Author: tt556 <tt556@cornell.edu>
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
 Date:   Wed Mar 27 23:31:42 2024 -0400
 
     Load csv processing
 
     - Figured out how to load csv into different structures:
-    - string list list
-    - float list list
+        - string list list
+        - float list list
 
 commit bac58f662de0678c5eda70e4f007dea4e2b46d0d
-Author: Timothy Li <tjl243@cornell.edu>
+Author: Timothy Li (tjl243) <tjl243@cornell.edu>
 Date:   Wed Mar 27 02:02:38 2024 -0400
 
     simple moving average, weighted moving average
@@ -37,7 +461,7 @@ Date:   Wed Mar 27 02:02:38 2024 -0400
     - normal averages also done, just returns float of whole list
 
 commit 79820e6ccbca76ae6667d2fe6550f532dbe3d652
-Author: Eric Zhou <ez255@cornell.edu>
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
 Date:   Wed Mar 27 00:56:28 2024 -0400
 
     Created library installation instructions
@@ -46,12 +470,12 @@ Date:   Wed Mar 27 00:56:28 2024 -0400
     - Did proper formatting
 
 commit c95d119a03079ca45f80e9c9b33cbec0481222be
-Author: Timothy Li <tjl243@cornell.edu>
+Author: Timothy Li (tjl243) <tjl243@cornell.edu>
 Date:   Wed Mar 27 00:54:56 2024 -0400
 
     Simple moving average, linear regression
     
-    Co-authored-by: Tanish Tyagi <anaconda121@users.noreply.github.com>
+    Co-authored-by: Tanish Tyagi (tt556) <tt556@cornell.edu>
 
     - Wrote simple moving average code (not finished)
     - Started on code for linear regression
@@ -66,7 +490,7 @@ Date:   Wed Mar 27 02:04:30 2024 -0400
     simple moving average, weighted moving average
 
 commit e91c64a94a1febd988c3454f3d3d62ccf6bfbc37
-Author: Timothy Li <tjl243@cornell.edu>
+Author: Timothy Li (tjl243) <tjl243@cornell.edu>
 Date:   Wed Mar 27 02:02:38 2024 -0400
 
     simple moving average, weighted moving average
@@ -76,7 +500,7 @@ Date:   Wed Mar 27 02:02:38 2024 -0400
 
 commit 3e201da0599a12b1bbfc4ab0973034baad5c355d
 Merge: 7b8e9df 7f722ef
-Author: Eric Zhou <31833003+eric-zzhou@users.noreply.github.com>
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
 Date:   Wed Mar 27 00:58:07 2024 -0400
 
     Merge pull request #7 from byte-bears/eric
@@ -84,7 +508,7 @@ Date:   Wed Mar 27 00:58:07 2024 -0400
     Created library installation instructions
 
 commit 7f722efbeeed9d998235dd1e2af996b93ee3b8af
-Author: Eric Zhou <ez255@cornell.edu>
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
 Date:   Wed Mar 27 00:56:28 2024 -0400
 
     Created library installation instructions
@@ -102,12 +526,15 @@ Date:   Wed Mar 27 00:55:59 2024 -0400
     Simple moving average, linear regression
 
 commit eb5c10e7c6c0662ca705086bdfa749dacf13d184
-Author: Timothy Li <tjl243@cornell.edu>
+Author: Timothy Li (tjl243) <tjl243@cornell.edu>
 Date:   Wed Mar 27 00:54:56 2024 -0400
 
     Simple moving average, linear regression
+
+    - Created files for simple moving average
+    - Started on linear regression code
     
-    Co-authored-by: Tanish Tyagi <anaconda121@users.noreply.github.com>
+    Co-authored-by: Tanish Tyagi (tt556) <tt556@cornell.edu>
 
 commit a52be6f313f84bff4719bbeee680fe28736ea703
 Merge: f3209db 88114d7
@@ -119,7 +546,7 @@ Date:   Tue Mar 26 23:54:41 2024 -0400
     slight changes to column/dt
 
 commit 4708e99d6021039b86cdf50b2605e14e488dd548
-Author: Tanish Tyagi <tt556@cornell.edu>
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
 Date:   Tue Mar 26 23:53:34 2024 -0400
 
     Create project_description.yaml
@@ -128,7 +555,7 @@ Date:   Tue Mar 26 23:53:34 2024 -0400
     - Included good description
 
 commit 0194878c8755095e1134d3ab4cbd112f8191b4c1
-Author: Anthony Song <abs343@cornell.edu>
+Author: Anthony Song (abs343) <abs343@cornell.edu>
 Date:   Tue Mar 26 19:50:41 2024 -0400
 
     Datatable (dt) and Column
@@ -138,7 +565,7 @@ Date:   Tue Mar 26 19:50:41 2024 -0400
 
 commit ee48cba9fab2f7f225b5b5dfbf3f9ecd58ee2a39
 Merge: 4362fc8 ecf14db
-Author: Eric Zhou <31833003+eric-zzhou@users.noreply.github.com>
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
 Date:   Mon Mar 25 21:23:33 2024 -0400
 
     Merge pull request #4 from byte-bears/eric
@@ -146,7 +573,7 @@ Date:   Mon Mar 25 21:23:33 2024 -0400
     Eric branch new player boxscore data
 
 commit ecf14dbfb04dea610ea79a3fac3ccd9cf43c13c0
-Author: Eric Zhou <ez255@cornell.edu>
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
 Date:   Mon Mar 25 21:22:28 2024 -0400
 
     Finished box score data gathering
@@ -155,7 +582,7 @@ Date:   Mon Mar 25 21:22:28 2024 -0400
     - Created boxscores csv that has past 3 years data from regular season
 
 commit 0aba33bc10ebb7ec971a450c3ea32dab6ea4bc5f
-Author: Eric Zhou <ez255@cornell.edu>
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
 Date:   Sun Mar 24 15:09:45 2024 -0400
 
     Did game data extraction
@@ -165,7 +592,7 @@ Date:   Sun Mar 24 15:09:45 2024 -0400
 
 commit fd8286388e5d50b74e9490809f55a3aaa205fe5d
 Merge: a34c9ac 4362fc8
-Author: Eric Zhou <31833003+eric-zzhou@users.noreply.github.com>
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
 Date:   Sun Mar 24 14:49:28 2024 -0400
 
     Merge pull request #3 from byte-bears/main
@@ -173,14 +600,14 @@ Date:   Sun Mar 24 14:49:28 2024 -0400
     Pull from main
 
 commit 4362fc834ee278e5a0daf5f52244f7858ee32c5e
-Author: tt556 <tt556@cornell.edu>
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
 Date:   Sun Mar 24 14:47:02 2024 -0400
 
     remove _build
 
 commit 5285c0ef8921c0b82e1548b6e2b0daedcc484458
 Merge: a34c9ac b9bef36
-Author: bytebears <162665431+byte-bears@users.noreply.github.com>
+Author: Selena Zheng (sz389) <sz389@cornell.edu>
 Date:   Sun Mar 24 14:36:54 2024 -0400
 
     Merge pull request #1 from byte-bears/tanish
@@ -188,7 +615,7 @@ Date:   Sun Mar 24 14:36:54 2024 -0400
     Primitive EMA algorithm - implemented algorithm for predicting player…
 
 commit b9bef3676b5d9dad2fab85082b03ebd862993071
-Author: tt556 <tt556@cornell.edu>
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
 Date:   Sun Mar 24 14:32:39 2024 -0400
 
     Primitive EMA algorithm
@@ -197,7 +624,7 @@ Date:   Sun Mar 24 14:32:39 2024 -0400
     - Need to work on connecting this with data
 
 commit a34c9ac73907e1c0980f53d856440f7af0f7ddc0
-Author: Eric Zhou <ez255@cornell.edu>
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
 Date:   Sun Mar 24 14:18:45 2024 -0400
 
     Refactored repository
@@ -206,7 +633,7 @@ Date:   Sun Mar 24 14:18:45 2024 -0400
     - Removed _build from github
 
 commit a335d3fc90fb59454527ad16b1242df76c854623
-Author: Anthony Song <abs343@cornell.edu>
+Author: Anthony Song (abs343) <abs343@cornell.edu>
 Date:   Sun Mar 24 14:13:06 2024 -0400
 
     Started on data representation
@@ -215,13 +642,13 @@ Date:   Sun Mar 24 14:13:06 2024 -0400
 
 commit 97f7e9b25388eca8b552cce5b15ccec96220bf84
 Merge: 43dd6a3 3212f95
-Author: Anthony Song <abs343@cornell.edu>
+Author: Anthony Song (abs343) <abs343@cornell.edu>
 Date:   Sat Mar 23 15:57:13 2024 -0400
 
     Merge branch 'main' of github.com:byte-bears/sports-betting
 
 commit 43dd6a33fd92e02a9c2aada88b6776894356ade8
-Author: Anthony Song <abs343@cornell.edu>
+Author: Anthony Song (abs343) <abs343@cornell.edu>
 Date:   Sat Mar 23 15:48:32 2024 -0400
 
     Created folders and initialized repo
@@ -231,38 +658,39 @@ Date:   Sat Mar 23 15:48:32 2024 -0400
     - Created the .gitignore file for our project.
 
 commit 3212f954f958798dfb5a8fc13f076aea98c4b85b
-Author: Tanish Tyagi <tt556@cornell.edu>
+Author: Tanish Tyagi (tt556) <tt556@cornell.edu>
 Date:   Fri Mar 8 00:32:05 2024 -0500
 
     added tanish name
 
 commit a054b17679aa4f53dab3556bb2ad0a8d61ca4c4e
-Author: Timothy Li <tjl243@cornell.edu>
+Author: Timothy Li (tjl243) <tjl243@cornell.edu>
 Date:   Fri Mar 8 00:25:33 2024 -0500
 
     Updated the wonderful readme
 
 commit 98500dd8332129a9b2daf229f50cacf1231b4395
-Author: Anthony Song <abs343@cornell.edu>
+Author: Anthony Song (abs343) <abs343@cornell.edu>
 Date:   Fri Mar 8 00:23:25 2024 -0500
 
     Edited readme so that it includes my name and netid.
 
 commit e5247a486b084c876b41952fb4aaecdd209562e9
-Author: Eric Zhou <ez255@cornell.edu>
+Author: Eric Zhou (ez255) <ez255@cornell.edu>
 Date:   Fri Mar 8 00:20:41 2024 -0500
 
     Redid README edit
 
 commit 9ed8d4367ff1b1c9d0af62f2c256e50916511c4b
-Author: sz389 <sz389@cornell.edu>
+Author: Selena Zheng (sz389) <sz389@cornell.edu>
 Date:   Fri Mar 8 00:13:56 2024 -0500
 
     Created README.md template
+
     - added name and netid
 
 commit 40e298053ec6c933b326012bbe36e028f9bd85ff
-Author: bytebears <162665431+byte-bears@users.noreply.github.com>
+Author: Selena Zheng (sz389) <sz389@cornell.edu>
 Date:   Thu Mar 7 23:53:40 2024 -0500
 
     Initial commit

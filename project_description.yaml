@@ -29,8 +29,9 @@ demo-video-url: ""
 
 # Write a short, attention-grabbing description of your project.
 desc: >
-  This is a bot that is capable of making predictions for player over-unders
-  for NBA basketball. We developed three algorithms: a Neural Network, a
-  Linear Regression model, and Exponential Moving Averages. We combined
-  these three models into a Textual User Interface (TUI) that users can use
-  run all three models on players over-unders of their choice.
+  Our project is a data generator and stat predictor for player over-unders for 
+  NBA basketball sports betting. We developed three algorithms: a Neural
+  Network, a Linear Regression model, and various Averages. We combined these 
+  three models and our data processing and feature extraction into a Textual 
+  User Interface (TUI) that people can use to run all these models on various
+  players and stats to get insights, model params, and/or model outputs.
