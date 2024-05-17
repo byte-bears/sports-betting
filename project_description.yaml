@@ -29,9 +29,8 @@ demo-video-url: ""
 
 # Write a short, attention-grabbing description of your project.
 desc: >
-  This will be a bot that is capable of placing various wagers on different 
-  sports, primarily basketball. We will develop statistical 
-  analysis techniques that involve scraping data from online sources to 
-  determine whether or not a player will score above or below a certain line. 
-  Our main types of bets will be player lines as opposed to determining whether 
-  or not a certain team will win or lose a game.
+  This will be a bot that is capable of making predictions for player over-unders
+  for NBA basketball. We will develop three algorithms: a Neural Network, a
+  Linear Regression model, and Exponential Moving Averages. We will combine
+  these three models into a Textual User Interface (TUI) that users can use
+  run all three models on players over-unders of their choice.
